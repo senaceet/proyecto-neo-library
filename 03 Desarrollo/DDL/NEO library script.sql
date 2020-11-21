@@ -81,3 +81,11 @@ alter table book_genre add foreign key (fk_id_genre) references genre (id_genre)
 alter table book_genre add foreign key (fk_id_book) references book (id_book);
 alter table book_writer add foreign key (fk_id_writer) references writer (id_writer);
 alter table book_writer add foreign key (fk_id_book) references book (id_book);
+CREATE TABLE log_error (
+    id_error VARCHAR(15) PRIMARY KEY NOT NULL,
+    description_error VARCHAR(80)
+);
+CREATE TABLE server_mail (
+    id_mail INT(10) PRIMARY KEY NOT NULL,
+    mail VARCHAR(25) NOT NULL
+);
