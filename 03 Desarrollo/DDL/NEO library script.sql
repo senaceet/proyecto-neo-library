@@ -14,7 +14,8 @@ CREATE TABLE writer (
 );
 CREATE TABLE document_type (
     id_type_document INT(5) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nomb_type_document VARCHAR(15) NOT NULL
+    nomb_type_document VARCHAR(20) NOT NULL,
+    acronym_doc VARCHAR(10) NOT NULL
 );
 CREATE TABLE useer (
     ID_user INT(8) NOT NULL,
@@ -25,7 +26,7 @@ CREATE TABLE useer (
     surname VARCHAR(15) NOT NULL,
     sec_surname VARCHAR(15),
     cell_phone VARCHAR(16) NOT NULL,
-    PRIMARY KEY (ID_user , document_user , fk_type_document )
+    PRIMARY KEY (ID_user , document_user , fk_type_document)
 );
 CREATE TABLE cliient (
     id_client INT(8) NOT NULL,
@@ -41,15 +42,15 @@ CREATE TABLE admin (
 );
 CREATE TABLE loan (
     id_loan INT(11) NOT NULL PRIMARY KEY,
-    date_loan DATE NOT NULL,
-    return_date DATE NOT NULL,
+    date_loan DATETIME NOT NULL,
+    return_date DATETIME NOT NULL,
     current_stade TINYINT(5) NOT NULL,
     coment TEXT,
     fk_id_client INT(8) NOT NULL
 );
 CREATE TABLE book (
     id_book INT(12) NOT NULL PRIMARY KEY,
-    title VARCHAR(30) NOT NULL,
+    title VARCHAR(45) NOT NULL,
     availability TINYINT(4) NOT NULL,
     physical_conditions TEXT NOT NULL,
     fk_Editorial INT(7) NOT NULL
