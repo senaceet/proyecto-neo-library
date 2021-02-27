@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--mine css-->
+    <link rel="stylesheet" href="./css/prestamoscs.css">
+    <!--asomefont-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
+    <title>Prestamos</title>
+</head>
+<body>
+    <!--navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><h4 class="h3 neon">書店</h4></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./administracion.html"><h5 class="h5">Inicio</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./libros.html"><h5 class="h5">Libros</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./usuarios.html"><h5 class="h5">Usuarios</h5></i></a>
+          </li>
+          <li>
+            <form class="d-flex mx-lg-4 ">
+                <input class="form-control me-2 sch" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success schbtn" type="submit"><i class="fas fa-search"></i></i></button>
+              </form>
+          </li>
+        </ul>
+        <a href="./Nloan.html" target="nueva"><button type="button" class="btn btn-info schbtn"><i class="fab fa-bandcamp"></i> Nuevo prestamo</button></a>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid mt-2">
+    <table class="table">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">ID</th>
+            <th scope="col">USUARIO</th>
+            <th scope="col">LIBRO</th>
+            <th scope="col">FECHA DE PRESTAMO</th>
+            <th scope="col">FECHA DE DEVOLUCION</th>
+            <th scope="col">ESTADO</th>
+            <th scope="col">OPCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>005</td>
+                <td>#1002</td>
+                <td>#1113</td>
+                <td>09/02/2021</td>
+                <td>16/02/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>#1453</td>
+                <td>#1031</td>
+                <td>02/02/2021</td>
+                <td>16/02/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr class="table-success">
+                <td>001</td>
+                <td>#1102</td>
+                <td>#1805</td>
+                <td>12/12/2020</td>
+                <td>30/12/2020</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr class="table-danger">
+                <td>004</td>
+                <td>#1723</td>
+                <td>#1312</td>
+                <td>05/01/2021</td>
+                <td>25/01/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr class="table-warning">
+                <td>003</td>
+                <td>#1132</td>
+                <td>#1523</td>
+                <td>06/02/2021</td>
+                <td>13/02/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr>
+                <td>005</td>
+                <td>#1002</td>
+                <td>#1113</td>
+                <td>09/02/2021</td>
+                <td>16/02/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>#1453</td>
+                <td>#1031</td>
+                <td>02/02/2021</td>
+                <td>16/02/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr class="table-success">
+                <td>001</td>
+                <td>#1102</td>
+                <td>#1805</td>
+                <td>12/12/2020</td>
+                <td>30/12/2020</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr class="table-danger">
+                <td>004</td>
+                <td>#1723</td>
+                <td>#1312</td>
+                <td>05/01/2021</td>
+                <td>25/01/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr class="table-warning">
+                <td>003</td>
+                <td>#1132</td>
+                <td>#1523</td>
+                <td>06/02/2021</td>
+                <td>13/02/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr class="table-danger">
+                <td>004</td>
+                <td>#1723</td>
+                <td>#1312</td>
+                <td>05/01/2021</td>
+                <td>25/01/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+              <tr class="table-danger">
+                <td>004</td>
+                <td>#1723</td>
+                <td>#1312</td>
+                <td>05/01/2021</td>
+                <td>25/01/2021</td>
+                <td><div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  </div></td>
+                <td><div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </div></td>
+              </tr>
+        </tbody>
+      </table>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-dark">1</button>
+          <button type="button" class="btn btn-dark">2</button>
+          <button type="button" class="btn btn-dark">3</button>
+          <button type="button" class="btn btn-dark">4</button>
+        </div>
+      </div>
+  </div>
+<!-- Bootstrap Bundle with Popper javascrip-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
+</body>
+</html>

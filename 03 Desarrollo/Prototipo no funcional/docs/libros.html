@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--ich css-->
+    <link rel="stylesheet" href="./css/libroscs.css">
+    <!--asomefont-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
+    <title>Libros</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><h4 class="h3 neon">書店</h4></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./administracion.html"><h5 class="h5">Inicio</h5></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./usuarios.html"><h5 class="h5">Usuarios</h5></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./prestamos.html"><h5 class="h5">Prestamos</h5></i></a>
+              </li>
+              <li>
+                <form class="d-flex mx-lg-4 ">
+                    <input class="form-control me-2 sch" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success schbtn" type="submit"><i class="fas fa-search"></i></i></button>
+                  </form>
+              </li>
+            </ul>
+            <a href="./Newbook.html" target="nueva"><button type="button" class="btn btn-info schbtn mx-3"><i class="fas fa-book-open"></i> Nuevo libro</button></a>
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle schbtn" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-cogs"></i> opciones avanzadas
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <li><a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Añadir genero</a></li>
+                  <li><a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Añadir autor</a></li>
+                  <li><a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Añadir editorial</a></li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid">
+          <div class="row">
+            <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/ice king1.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Rey helado</h5>
+                  <ul class="card-tex">
+                      <li>Genero: <span class="badge bg-primary">fantasia</span>
+                        <span class="badge bg-secondary">drama</span></li>
+                      <li>Autor: simon petricok</li>
+                      <li>Editorial: perro amarillo</li>
+                  </ul>
+                  <span class="badge rounded-pill bg-danger">No disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/ice king 2.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Ice king</h5>
+                  <ul class="card-text">
+                      <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-info text-dark">Comedia</span> <span class="badge bg-dark">Novela</span> </li>
+                      <li>Autor: evergreen </li>
+                      <li>Editorial: perro espacial </li>
+                  </ul>
+                  <span class="badge rounded-pill bg-success"> disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/jl_viaje_centro_tierra.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Viaje al centro de la tierra</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne </li>
+                    <li>Editorial: Planeta </li>
+                </ul>
+                <span class="badge rounded-pill bg-success"> disponible</span>
+                <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/descarga.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Viaje al centro de la tierra</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne</li>
+                    <li>Editorial: Gato negro</li>
+                </ul>
+                <span class="badge rounded-pill bg-danger">No disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/descarga (3).jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">De la tierra a la luna</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-warning text-dark">suspenso</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne </li>
+                    <li>Editorial: Azteca </li>
+                </ul>
+                <span class="badge rounded-pill bg-success"> disponible</span>
+                <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/ice king1.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Rey helado</h5>
+                  <ul class="card-tex">
+                      <li>Genero: <span class="badge bg-primary">fantasia</span>
+                        <span class="badge bg-secondary">drama</span></li>
+                      <li>Autor: simon petricok</li>
+                      <li>Editorial: perro amarillo</li>
+                  </ul>
+                  <span class="badge rounded-pill bg-danger">No disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/ice king 2.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Ice king</h5>
+                  <ul class="card-text">
+                      <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-info text-dark">Comedia</span> <span class="badge bg-dark">Novela</span> </li>
+                      <li>Autor: evergreen </li>
+                      <li>Editorial: perro espacial </li>
+                  </ul>
+                  <span class="badge rounded-pill bg-success"> disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/jl_viaje_centro_tierra.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Viaje al centro de la tierra</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne </li>
+                    <li>Editorial: Planeta </li>
+                </ul>
+                <span class="badge rounded-pill bg-success"> disponible</span>
+                <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/descarga.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Viaje al centro de la tierra</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne</li>
+                    <li>Editorial: Gato negro</li>
+                </ul>
+                <span class="badge rounded-pill bg-danger">No disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/descarga (3).jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">De la tierra a la luna</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-warning text-dark">suspenso</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne </li>
+                    <li>Editorial: Azteca </li>
+                </ul>
+                <span class="badge rounded-pill bg-success"> disponible</span>
+                <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/ice king1.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Rey helado</h5>
+                  <ul class="card-tex">
+                      <li>Genero: <span class="badge bg-primary">fantasia</span>
+                        <span class="badge bg-secondary">drama</span></li>
+                      <li>Autor: simon petricok</li>
+                      <li>Editorial: perro amarillo</li>
+                  </ul>
+                  <span class="badge rounded-pill bg-danger">No disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/ice king 2.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Ice king</h5>
+                  <ul class="card-text">
+                      <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-info text-dark">Comedia</span> <span class="badge bg-dark">Novela</span> </li>
+                      <li>Autor: evergreen </li>
+                      <li>Editorial: perro espacial </li>
+                  </ul>
+                  <span class="badge rounded-pill bg-success"> disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/jl_viaje_centro_tierra.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Viaje al centro de la tierra</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne </li>
+                    <li>Editorial: Planeta </li>
+                </ul>
+                <span class="badge rounded-pill bg-success"> disponible</span>
+                <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/descarga.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Viaje al centro de la tierra</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne</li>
+                    <li>Editorial: Gato negro</li>
+                </ul>
+                <span class="badge rounded-pill bg-danger">No disponible</span>
+                  <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+              <div class="card m-4 mb-2 mx-2" style="width: 18rem;">
+                <img src="./imagenes/descarga (3).jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">De la tierra a la luna</h5>
+                  <ul class="card-text">
+                    <li>Genero: <span class="badge bg-warning text-dark">suspenso</span> <span class="badge bg-primary">fantasia</span></li>
+                    <li>Autor: Julio verne </li>
+                    <li>Editorial: Azteca </li>
+                </ul>
+                <span class="badge rounded-pill bg-success"> disponible</span>
+                <hr>
+                  <a href="#" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
+                </div>
+              </div>
+          </div>
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+              <button type="button" class="btn btn-dark">1</button>
+              <button type="button" class="btn btn-dark">2</button>
+              <button type="button" class="btn btn-dark">3</button>
+              <button type="button" class="btn btn-dark">4</button>
+            </div>
+          </div>
+      </div>
+<!-- Bootstrap Bundle with Popper javascrip-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

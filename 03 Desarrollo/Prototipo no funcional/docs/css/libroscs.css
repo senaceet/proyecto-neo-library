@@ -1,0 +1,24 @@
+.neon {
+    color: rgb(255, 255, 255);
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px rgb(0, 38, 255),
+      0 0 80px rgb(0, 38, 255),
+      0 0 90px rgb(0, 38, 255),
+      0 0 100px rgb(0, 38, 255),
+      0 0 150px rgb(0, 38, 255);
+ }
+ .schbtn{
+background-color: rgb(1, 21, 131);
+border: none;
+color: white;
+}
+.schbtn:hover{
+    background-color: rgb(0, 38, 255);
+    color: white;
+}
+.cbtn{
+    background-color: rgba(255, 102, 0, 0.404);
+}

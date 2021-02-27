@@ -1,0 +1,51 @@
+body {
+   background: #383838;
+}
+.neon {
+   color: rgb(255, 255, 255);
+   text-shadow:
+     0 0 5px #fff,
+     0 0 10px #fff,
+     0 0 20px #fff,
+     0 0 40px #0ff,
+     0 0 80px #0ff,
+     0 0 90px #0ff,
+     0 0 100px #0ff,
+     0 0 150px #0ff;
+}
+/* Style buttons */
+.btno {
+   background-color: rgb(0, 0, 0); /* Blue background */
+   border: none; /* Remove borders */
+   color: rgb(101, 247, 227); /* White text */
+   font-size: 16px; /* Set a font size */
+   cursor: pointer; /* Mouse pointer on hover */
+ }
+ /* Darker background on mouse-over */
+ .btno:hover {
+   background-color: rgb(255, 255, 255);
+ }
+ .carusu{
+   max-height: 450px;
+}
+.cardsbimg{
+  max-width: 640px;
+  max-height: 940px;
+  min-width: 640px;
+  min-height: 940px;
+}
+.cadbtn{
+ background-color: rgb(37, 238, 204);
+ color: cornsilk;
+}
+.cadbtn:hover{
+  background-color: darkcyan;
+}
+.foter{
+  background-color: rgb(20, 20, 20);
+  height: 150px;
+  color: #4d4d4d;
+}
+.footer1{
+  background-color: rgb(20, 20, 20);
+}

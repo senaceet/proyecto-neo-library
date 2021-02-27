@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--asomefont-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
+    <!--maind css-->
+    <link rel="stylesheet" href="./css/admind.css">
+    <title>Admind</title>
+</head>
+<body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><h4 class="h3 neon">書店</h4></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="./prestamos.html"><h4 class="h5">Prestamos</h4></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./usuarios.html"><h4 class="h5">Usuarios</h4></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./libros.html"><h4 class="h5">Libros</h4></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="btn-group  px-lg-5">
+            <button type="button" class="btn izbt"><i class="fas fa-user-ninja"></i></button>
+            <button type="button" class="btn izbt dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> configuracion</a></li>
+              <li><a class="dropdown-item" href="./loginad.html"><i class="fas fa-user-friends"></i> cambiar Usuario</a></li>
+              <li><a class="dropdown-item" href="./index.html"><i class="fas fa-user-times"></i> cerrar sesion</a></li>
+            </ul>
+          </div>
+      </nav>
+      <!--botones-->
+      <div class="container my-4">
+        <div class="row">
+          <div class="col-lg-1  col-0"></div>
+          <div class="col-lg-2  col-2"><a href="./Newbook.html" target="nueva"><button type="button" class="btn btn-success m-2 inbon "><i class="fas fa-journal-whills icinbon"></i><hr>Nuevo libro</button></a></div>
+          <div class="col-lg-1  col-1"></div>
+          <div class="col-lg-2  col-2"><a href="./nuser.html" target="nueva"><button type="button" class="btn btn-success m-2 inbon"><i class="fas fa-user-plus icinbon"></i><hr>Nuevo Usuario</button></a></div>
+          <div class="col-lg-1  col-1"></div>
+          <div class="col-lg-2  col-2"><a href="./Nloan.html" target="nueva"><button type="button" class="btn btn-success m-2 inbon"><i class="fab fa-leanpub icinbon"></i><hr>Nuevo prestamo</button></a></div>
+          <div class="col-lg-1  col-1"></div>
+          <div class="col-lg-2  col-2"><a href=""><button type="button" class="btn btn-success m-2 inbon"><i class="fas fa-chart-bar icinbon"></i><hr>Generar informe</button></a></div>
+          <div class="col-lg-1  col-0"></div>
+        </div>
+      </div>
+      <!--widges-->
+      <div class="container-fluid m-1">
+    <div class="row ">
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-cherry">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Nuevos Usuarios</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                3,243
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>12.5% <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-blue-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-book-reader"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Prestamos</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                15.07k
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>9.23% <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-green-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-archive"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">inventario</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                578
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>10% <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-orange-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-eye"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Visitas</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                11.61k
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>2.5% <i class="fa fa-arrow-up"></i></span>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!--ultimos prestamos-->
+<div class="container-fluid px-3">
+  <div><h2 class="h3">Ultimos prestamos</h2></div>
+  <table class="table">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">ID prestamo</th>
+        <th scope="col">Fecha prestamo</th>
+        <th scope="col">Devolucion</th>
+        <th scope="col">Libro</th>
+        <th scope="col">Usuario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>005</td>
+        <td>09/02/2021</td>
+        <td>16/02/2021</td>
+        <td>#1002</td>
+        <td>#1113</td>
+      </tr>
+      <tr>
+        <td>002</td>
+        <td>02/02/2021</td>
+        <td>16/02/2021</td>
+        <td>#1453</td>
+        <td>#1031</td>
+      </tr>
+      <tr class="table-success">
+        <td>001</td>
+        <td>12/12/2020</td>
+        <td>30/12/2020</td>
+        <td>#1102</td>
+        <td>#1805</td>
+      </tr>
+      <tr class="table-danger">
+        <td>004</td>
+        <td>05/01/2021</td>
+        <td>25/01/2021</td>
+        <td>#1723</td>
+        <td>#1312</td>
+      </tr>
+      <tr class="table-warning">
+        <td>003</td>
+        <td>06/02/2021</td>
+        <td>13/02/2021</td>
+        <td>#1132</td>
+        <td>#1523</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Bootstrap Bundle with Popper javascrip-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

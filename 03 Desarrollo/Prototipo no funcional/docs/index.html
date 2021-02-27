@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--CSS index-->
+    <link href="./css/indexcss.css" rel="stylesheet">
+    <!--asomefont-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
+    <title>Neo library</title>
+</head>
+<body>
+  <!--navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><h4 class="h3 neon">書店</h4></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./loginad.html"><i class="fas fa-feather-alt neon"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./error.html"><i class="fas fa-random"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./loginus.html"><i class="fas fa-user-astronaut"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mis prestamos</a>
+          </li>
+        </ul>
+        <form class="d-flex mx-lg-1 ">
+          <input class="form-control me-2 sch" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btno" type="submit"><i class="fas fa-ankh"></i></button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <!--carusel-->
+  <div>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+      <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./imagenes/c2947f93153b37d4f7cc12566310eda8.jpg" class="d-block w-100 carusu" alt="libreria hora de aventura">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="./imagenes/library.jpg" class="d-block w-100 carusu" alt="logo grande">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="./imagenes/ErZjap9W8AAGeZh.jpg" class="d-block w-100 carusu" alt="simple">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+</div>
+<!--book cards-->
+<div class="container mt-2 ">
+  <div class="row">
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/ice king1.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/ice king 2.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/ice king1.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/ice king 2.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/jl_viaje_centro_tierra.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/ice king 2.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/ice king1.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/descarga.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/descarga (3).jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/ice king 2.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/jl_viaje_centro_tierra.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/descarga.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/descarga.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/ice king1.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/descarga (3).jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
+    <img src="./imagenes/jl_viaje_centro_tierra.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+    </div>
+  </div>
+</div>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group me-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-dark">1</button>
+    <button type="button" class="btn btn-dark">2</button>
+    <button type="button" class="btn btn-dark">3</button>
+    <button type="button" class="btn btn-dark">4</button>
+  </div>
+</div>
+</div>
+<!--footer-->
+<footer class="mt-4 footer1">
+<div class="foter container pt-4">
+  <div class="float-left m-2"><a href="https://github.com/senaceet/proyecto-neo-library" target="nueva">Git Hub</a></div>
+</div>
+</footer>
+ <!-- Bootstrap Bundle with Popper javascrip-->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>
