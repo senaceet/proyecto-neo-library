@@ -23,9 +23,9 @@ POSTGRESQL = {
 MYSQL = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db',
+        'NAME': 'NEO_LIBRARY',
         'USER': 'root',
-        'PASSWORD': 'password',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '3306'
     }
