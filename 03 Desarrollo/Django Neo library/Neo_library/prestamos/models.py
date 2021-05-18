@@ -77,7 +77,7 @@ class Cliient(models.Model):
     observation = models.TextField(blank=True, null=True)
 
     class Meta:
-        db_table = 'cliient'
+        db_table = 'client'
 
 class Loan(models.Model):
     date_loan = models.DateTimeField(auto_now=True)
