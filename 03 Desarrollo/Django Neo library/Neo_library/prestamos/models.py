@@ -11,6 +11,8 @@ class DocumentType(models.Model):
         return self.acronym_doc
     class Meta:
         db_table = 'Tipo de documento'
+        verbose_name= 'tipo de documento'
+        verbose_name_plural= 'Tipos de Documentos'
 
 class Editorial(models.Model):
     name_editorial = models.CharField(max_length=45,verbose_name='Editorial')
@@ -19,6 +21,8 @@ class Editorial(models.Model):
         return self.name_editorial
     class Meta:
         db_table = 'Editorial'
+        verbose_name = 'Editorial'
+        verbose_name_plural='Editoriales'
 class Writer(models.Model):
     name_writer = models.CharField(max_length=50,verbose_name='Autor')
 
@@ -27,6 +31,9 @@ class Writer(models.Model):
 
     class Meta:
         db_table = 'Autores'
+        verbose_name = 'Autor'
+        verbose_name_plural='Autores'
+
 
 class Genre(models.Model):
     name_genre = models.CharField(max_length=30,verbose_name='Genero')
@@ -35,6 +42,7 @@ class Genre(models.Model):
         return self.name_genre
     class Meta:
         db_table = 'Generos'
+        verbose_name = 'Genero'
 
 class Useer(models.Model):
     document_user = models.IntegerField(verbose_name='Numero de documento')
@@ -50,6 +58,7 @@ class Useer(models.Model):
 
     class Meta:
         db_table = 'Usuarios'
+        verbose_name = 'Usuario'
 
     def __str__(self):
         return self.document_user+' '+self.first_name+' '+self.surname
@@ -60,24 +69,27 @@ class Admin(models.Model):
 
     class Meta:
         db_table = 'Administradores'
+        verbose_name = 'Administrador'
+        verbose_name_plural='Administradores'
 
 
 class Book(models.Model):
-    AVAILABILITY_CHOISES = [('D','disponible'),('N', 'No disponible')]
+    AVAILABILITY_CHOISES = [('D','Disponible'),('N', 'No disponible')]
     barcode = models.CharField(blank=True, null=True,max_length=30,verbose_name='Codigo de barras')
     title = models.CharField(max_length=40,verbose_name='Titulo')
     availability = models.CharField(max_length=14,choices=AVAILABILITY_CHOISES,verbose_name='Disponivilidad')
     image = models.ImageField(verbose_name='imagen',blank=True, null=True)
     coments = models.TextField(blank=True, null=True,verbose_name='Comentario')
-    fk_editorial = models.ForeignKey(Editorial,on_delete=models.CASCADE)
-    fk_writer = models.ManyToManyField(Writer)
-    fk_genre =models.ManyToManyField(Genre)
+    fk_editorial = models.ForeignKey(Editorial,on_delete=models.CASCADE,verbose_name='Editorial')
+    fk_writer = models.ManyToManyField(Writer,verbose_name='Escritor(es)')
+    fk_genre =models.ManyToManyField(Genre,verbose_name='Genero(s)')
 
     def __str__(self):
         return self.title
 
     class Meta:
         db_table = 'Libro'
+        verbose_name = 'Libro'
 
 class Cliient(models.Model):
     fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE)
@@ -85,6 +97,7 @@ class Cliient(models.Model):
 
     class Meta:
         db_table = 'clientes'
+        verbose_name = 'cliente'
 
 class Loan(models.Model):
     date_loan = models.DateTimeField(auto_now=True,verbose_name='Fecha de prestamo')
@@ -95,6 +108,7 @@ class Loan(models.Model):
 
     class Meta:
         db_table = 'Prestamos'
+        verbose_name = 'Prestamo'
 
 
 class LogError(models.Model):
