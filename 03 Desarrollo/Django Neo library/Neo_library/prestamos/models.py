@@ -11,7 +11,7 @@ class DocumentType(models.Model):
         return self.acronym_doc
     class Meta:
         db_table = 'Tipo de documento'
-        verbose_name= 'tipo de documento'
+        verbose_name= 'Tipo de Documento'
         verbose_name_plural= 'Tipos de Documentos'
 
 class Editorial(models.Model):
@@ -36,25 +36,25 @@ class Writer(models.Model):
 
 
 class Genre(models.Model):
-    name_genre = models.CharField(max_length=30,verbose_name='Genero')
+    name_genre = models.CharField(max_length=30,verbose_name='Género')
 
     def __str__(self):
         return self.name_genre
     class Meta:
         db_table = 'Generos'
-        verbose_name = 'Genero'
+        verbose_name = 'Género'
 
 class Useer(models.Model):
     document_user = models.IntegerField(verbose_name='Numero de documento')
-    fk_type_document = models.ForeignKey(DocumentType,on_delete=models.CASCADE)
+    fk_type_document = models.ForeignKey(DocumentType,on_delete=models.CASCADE,verbose_name="Tipo de Documento")
     first_name = models.CharField(max_length=15,verbose_name='Primer Nombre')
     sec_name = models.CharField(blank=True, null=True,max_length=15,verbose_name='Segundo Nombre')
     surname = models.CharField(max_length=15,verbose_name='Primer Apellido')
     sec_surname = models.CharField(blank=True, null=True,max_length=15,verbose_name='Segundo Apellido')
-    password_ad = models.CharField(max_length=12,verbose_name='Contraseña')
+    password_ad = models.CharField(max_length=20,verbose_name='Contraseña')
     email = models.EmailField(max_length=111,verbose_name='Correo')
-    address = models.CharField(max_length=20,verbose_name='Direccion')
-    cell_phone = models.BigIntegerField(verbose_name='Telefono')
+    address = models.CharField(max_length=20,verbose_name='Dirección')
+    cell_phone = models.BigIntegerField(verbose_name='Teléfono')
 
     class Meta:
         db_table = 'Usuarios'
@@ -65,7 +65,7 @@ class Useer(models.Model):
 
     
 class Admin(models.Model):
-    fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE)
+    fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE,verbose_name="Usuario")
 
     class Meta:
         db_table = 'Administradores'
@@ -77,12 +77,12 @@ class Book(models.Model):
     AVAILABILITY_CHOISES = [('D','Disponible'),('N', 'No disponible')]
     barcode = models.CharField(blank=True, null=True,max_length=30,verbose_name='Codigo de barras')
     title = models.CharField(max_length=40,verbose_name='Titulo')
-    availability = models.CharField(max_length=14,choices=AVAILABILITY_CHOISES,verbose_name='Disponivilidad')
-    image = models.ImageField(verbose_name='imagen',blank=True, null=True)
+    availability = models.CharField(max_length=14,choices=AVAILABILITY_CHOISES,verbose_name='Disponibilidad')
+    image = models.ImageField(verbose_name='Imagen',blank=True, null=True)
     coments = models.TextField(blank=True, null=True,verbose_name='Comentario')
     fk_editorial = models.ForeignKey(Editorial,on_delete=models.CASCADE,verbose_name='Editorial')
     fk_writer = models.ManyToManyField(Writer,verbose_name='Escritor(es)')
-    fk_genre =models.ManyToManyField(Genre,verbose_name='Genero(s)')
+    fk_genre =models.ManyToManyField(Genre,verbose_name='Género(s)')
 
     def __str__(self):
         return self.title
@@ -92,7 +92,7 @@ class Book(models.Model):
         verbose_name = 'Libro'
 
 class Cliient(models.Model):
-    fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE)
+    fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE,verbose_name="Usuario")
     observation = models.TextField(blank=True, null=True,verbose_name='Comentario')
 
     class Meta:
@@ -100,15 +100,15 @@ class Cliient(models.Model):
         verbose_name = 'cliente'
 
 class Loan(models.Model):
-    date_loan = models.DateTimeField(auto_now=True,verbose_name='Fecha de prestamo')
+    date_loan = models.DateTimeField(auto_now=True,verbose_name='Fecha de préstamo')
     return_date = models.DateField(verbose_name='Fecha de devolucion')
     current_state = models.CharField(verbose_name='Estado',max_length=15)
     coment = models.TextField(blank=True, null=True,verbose_name='Comentario')
-    fk_id_client = models.ForeignKey(Cliient,on_delete=models.CASCADE)
+    fk_id_client = models.ForeignKey(Cliient,on_delete=models.CASCADE,verbose_name='Usuario')
 
     class Meta:
         db_table = 'Prestamos'
-        verbose_name = 'Prestamo'
+        verbose_name = 'Préstamo'
 
 
 class LogError(models.Model):
