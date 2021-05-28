@@ -45,7 +45,7 @@ class Genre(models.Model):
         verbose_name = 'Género'
 
 class Useer(models.Model):
-    document_user = models.IntegerField(verbose_name='Numero de documento')
+    document_user = models.CharField(max_length=25,verbose_name='Numero de documento')
     fk_type_document = models.ForeignKey(DocumentType,on_delete=models.CASCADE,verbose_name="Tipo de Documento")
     first_name = models.CharField(max_length=15,verbose_name='Primer Nombre')
     sec_name = models.CharField(blank=True, null=True,max_length=15,verbose_name='Segundo Nombre')
@@ -77,7 +77,7 @@ class Book(models.Model):
     AVAILABILITY_CHOISES = [('D','Disponible'),('N', 'No disponible')]
     barcode = models.CharField(blank=True, null=True,max_length=30,verbose_name='Codigo de barras')
     title = models.CharField(max_length=40,verbose_name='Titulo')
-    availability = models.CharField(max_length=14,choices=AVAILABILITY_CHOISES,verbose_name='Disponibilidad')
+    availability = models.BooleanField(verbose_name='Disponibilidad',null=True)
     image = models.ImageField(verbose_name='Imagen',blank=True, null=True)
     coments = models.TextField(blank=True, null=True,verbose_name='Comentario')
     fk_editorial = models.ForeignKey(Editorial,on_delete=models.CASCADE,verbose_name='Editorial')
@@ -102,9 +102,10 @@ class Cliient(models.Model):
 class Loan(models.Model):
     date_loan = models.DateTimeField(auto_now=True,verbose_name='Fecha de préstamo')
     return_date = models.DateField(verbose_name='Fecha de devolucion')
-    current_state = models.CharField(verbose_name='Estado',max_length=15)
+    current_state = models.BooleanField(verbose_name='Estado')
     coment = models.TextField(blank=True, null=True,verbose_name='Comentario')
     fk_id_client = models.ForeignKey(Cliient,on_delete=models.CASCADE,verbose_name='Usuario')
+    fk_book = models.ManyToManyField(Book,verbose_name='Libro')
 
     class Meta:
         db_table = 'Prestamos'
