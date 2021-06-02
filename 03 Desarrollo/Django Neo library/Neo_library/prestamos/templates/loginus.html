@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--css mine-->
+    <link rel="stylesheet" href="{% static 'css/singin2.css' %}">
+     <!--asomefont-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
+    <title>Inicio de seccion usuario</title>
+</head>
+<body background="{% static 'images/bgs/bg_login_user_old_library.jpg' %}">
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
+    <div class="container-fluid">
+      <div class="my-4 mx-3 hallo">
+          <div class="mb-3 row"><img class="avatar" src='https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairTheCaesar&accessoriesType=Blank&hairColor=Red&facialHairType=Blank&clotheType=GraphicShirt&clotheColor=PastelGreen&graphicType=Diamond&eyeType=Happy&eyebrowType=Default&mouthType=Smile&skinColor=Light'/></div>
+          <div class="mb-3 row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10 mb-2">
+                  <input type="email" class="form-control fcc mx-3" id="exampleFormControlInput1" placeholder="name@example.com">
+              </div>
+            <div class="mb-3 row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control fcc mx-3" id="inputPassword">
+              </div>
+              <div class="my-3 row mx-5">
+                  <div class="col-2"></div>
+                  <div class="col-3"><button type="submit" class="btn btn-danger mb-3 clbto">Clear</button></div>
+                  <div class="col-4"><a href="./index.html"><button type="submit" class="btn btn-danger mb-3 gbtn "><i class="fas fa-book-open"></i> go</button></a></div>
+              </div>
+            </div>
+      </div>
+      </div>
+      </div>
+  </div>
+  <div class="col"></div>
+</div>
+ <!-- Bootstrap Bundle with Popper javascrip-->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

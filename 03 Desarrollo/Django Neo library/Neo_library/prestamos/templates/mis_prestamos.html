@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--asomefont-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
+    <!--maind css-->
+    <link rel="stylesheet" href="{% static 'css/mprestamos.css' %}">
+    <!--icon sh-->
+    <link rel="shortcut icon" href="https://www.freeiconspng.com/uploads/retrowave-sun-with-alpha-background-vaporwave-png-27.png">
+    <title>Mis prestamos</title>
+</head>
+<body class="linearbg">
+    <header>
+        <nav class="navbar retro">
+          <div class="container-fluid retro">
+            <h1 class="h1 letter"><img src="https://i.pinimg.com/originals/5f/58/b6/5f58b675f469bcdb420420d1be901a76.png" alt="user"  class="usuarioi"> paco camilo camacho</h1>
+            <a href="./index.html"><i class=" iconsp fas fa-home fa-2x"></i></a>
+            <a href=""><i class=" iconsp fas fa-question fa-2x"></i></a>
+          </div>
+        </nav>
+    </header>
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">Prestamo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row m-1">
+            <div class="col p-0">
+             <input class="form-control" type="text" placeholder="ID #0000" aria-label="readonly loan id" readonly>
+            </div>
+            <div class="col">
+                <div class="form-check form-switch mt-2">
+                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"><h6 class="h6 text-white">Activo</h6></label>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
+                  </div>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col">
+                <label for="start" ><h6 class="h6 text-white bgc">fecha de prestamo:</h6></label>
+
+              <input type="date" id="start" name="trip-start" disabled readonly
+              value="2021-02-20"
+              min="2020-07-20" max="2023-12-31">
+            </div>
+            <div class="col">
+                <label for="start" ><h6 class="h6 text-white bgc">fecha de devolucion:</h6></label>
+
+              <input type="date" id="start" name="trip-start" disabled readonly
+              value="2021-02-20"
+              min="2020-07-20" max="2023-12-31">
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col">
+                <select class="form-select" multiple size="3" aria-label="size 3 select example" placeholder="" disabled readonly>
+                    <option selected> Libros </option>
+                    <option value="1">Libro 1</option>
+                    <option value="2">Libro 2</option>
+                    <option value="3">Libro 3</option>
+                    <option value="4">Libro 4</option>
+                    <option value="5">Libro 5</option>
+                    <option value="6">Libro 6</option>
+                    <option value="7">Libro 7</option>
+                    <option value="8">Libro 8</option>
+                    <option value="9">Libro 9</option>
+                    <option value="10">Libro 10</option>
+                  </select>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col">
+                <select class="form-select mt-3" aria-label="Default select example placeholder=" Disabled readonly >
+                    <option selected>Usuario</option>
+                    <option value="1">usuario 1</option>
+                    <option value="2">usuario 2</option>
+                    <option value="3">usuario 3</option>
+                    <option value="4">usuario 4</option>
+                    <option value="5">usuario 5</option>
+                    <option value="6">usuario 6</option>
+                    <option value="7">usuario 7</option>
+                    <option value="8">usuario 8</option>
+                    <option value="9">usuario 9</option>
+                  </select>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col">
+                <label for="exampleFormControlTextarea1" class="form-label"><h6 class="h6 text-white bgc">Comentario</h6></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" disabled readonly rows="3"></textarea>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success mb-2 b_ayuda"><i class="fas fa-question"></i> Ayuda</button>
+        <button type="button" class="btn btn-danger b_ok" data-bs-dismiss="modal"><i class="fab fa-cloudsmith"></i> Ok</button>
+      </div>
+    </div>
+  </div>
+</div> 
+    <div class="container-fluid px-3">
+        <div><h2 class="h3 neon_text">Ultimos prestamos</h2></div>
+        <table class="table">
+          <thead>
+            <tr class="table-dak tabpres">
+              <th scope="col">ID prestamo</th>
+              <th scope="col">Fecha prestamo</th>
+              <th scope="col">Devolucion</th>
+              <th scope="col">Libro</th>
+              <th scope="col">Ver</th>
+            </tr>
+          </thead>
+          <tbody class="tabpres">
+            <tr>
+              <td>005</td>
+              <td>09/02/2021</td>
+              <td>16/02/2021</td>
+              <td>#1002</td>
+              <td><i  data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="far fa-eye ieye"></i></td>
+            </tr>
+            <tr>
+              <td>002</td>
+              <td>02/02/2021</td>
+              <td>16/02/2021</td>
+              <td>#1453</td>
+              <td><i class="far fa-eye ieye"></i></td>
+            </tr>
+            <tr>
+              <td>001</td>
+              <td>12/12/2020</td>
+              <td>30/12/2020</td>
+              <td>#1102</td>
+              <td><i class="far fa-eye ieye"></i></td>
+            </tr>
+            <tr>
+              <td>004</td>
+              <td>05/01/2021</td>
+              <td>25/01/2021</td>
+              <td>#1723</td>
+              <td><i class="far fa-eye ieye"></i></td>
+            </tr>
+            <tr>
+              <td>003</td>
+              <td>06/02/2021</td>
+              <td>13/02/2021</td>
+              <td>#1132</td>
+              <td><i class="far fa-eye ieye"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+<!-- Bootstrap Bundle with Popper javascrip-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

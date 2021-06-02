@@ -1,0 +1,335 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--mine css-->
+    <link rel="stylesheet" href="{% static 'css/user_css.css' %}">
+    <!--asomefont-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
+    <title>user</title>
+</head>
+<body>
+     <!--navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><h4 class="h3 neon">書店</h4></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./administracion.html"><h5 class="h5">Inicio</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./libros.html"><h5 class="h5">Libros</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./prestamos.html"><h5 class="h5">Prestamos</h5></i></a>
+          </li>
+          <li>
+            <form class="d-flex mx-lg-4 ">
+                <input class="form-control me-2 sch" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success schbtn" type="submit"><i class="fas fa-search"></i></i></button>
+              </form>
+          </li>
+        </ul>
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle schbtn fas fa-cogs" data-bs-toggle="dropdown" aria-expanded="false">
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#Ntdoc" ><i class="fas fa-plus"></i> tipo de documento</a></li>
+          </ul>
+          <button type="button" class="btn btn-info schbtn"data-bs-toggle="modal" data-bs-target="#mnuevousuario" ><i class="fas fa-user-plus"></i> Nuevo usuario</button>
+        </div>
+      </div>
+    </div>
+  </nav> 
+<!-- Modal user -->
+<div class="modal fade" id="mnuevousuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">Nuevo usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-bgi">
+        <div class="row m-2">
+          <div class="col">
+              <select class="form-select mt-2" aria-label="Default select example">
+                  <option selected>Tipo De Documento</option>
+                  <option value="1">CC</option>
+                  <option value="2">CE</option>
+                  <option value="3">TI</option>
+                </select>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control mt-2" placeholder="N° Documento*" aria-label="Documento">
+          </div>
+        </div>
+        <div class="row m-2">
+          <div class="col">
+              <input type="text" class="form-control" placeholder="Primer nombre*" aria-label="primer nombre">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Segundo nombre" aria-label="segundo nombre">
+            </div>
+        </div>
+        <div class="row m-2">
+          <div class="col">
+              <input type="text" class="form-control" placeholder="Primer Apellido*" aria-label="primer apellido">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Segundo Apellido" aria-label="segundo apellido">
+            </div>
+        </div>
+        <div class="row m-2">
+          <div class="col">
+              <input type="text" class="form-control" placeholder="Direccion*" aria-label="direccion">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Telefono*" aria-label="Telefono">
+            </div>
+        </div>
+        <div class="row m-2">
+          <div class="col">
+              <h6 class="h6 mt-2 white">Correo --></h6>
+            </div>
+            <div class="col">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp " placeholder="name@example.com">
+            </div>
+        </div>
+        <div class="row m-2">
+          <div class="col">
+            <h6 class="h6 mt-2 white ">Contraseña --></h6>
+            </div>
+            <div class="col">
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
+        <button type="button" class="btn btn-primary mb-2 arttoc"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
+        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </div>
+    </div>
+  </div>
+</div> 
+<!--modal tdoc-->
+<div class="modal fade" id="Ntdoc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo tipo de documento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-tipod">
+        <div class="row m-2">
+          <div class="col">
+              <input type="text" class="form-control mt-2" placeholder="Tipo de documento*" aria-label="primer apellido">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control mt-2" placeholder="siglas*" aria-label="segundo apellido">
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
+        <button type="button" class="btn btn-primary"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
+        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--table-->
+  <div class="container-fluid mt-2 ">
+    <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">N° DOCUMENTO</th>
+            <th scope="col">NOMBRES</th>
+            <th scope="col">APELLIDOS</th>
+            <th scope="col">CORREO</th>
+            <th scope="col">DIRECCION</th>
+            <th scope="col">TELEFONO</th>
+            <th scope="col">OPCIONES <i class="fas fa-sync-alt"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>1002155892</td>
+            <td>cristian camilo</td>
+            <td>camacho</td>
+            <td>camg14@gmail.com</td>
+            <td>cll6 s 67b11</td>
+            <td>3186457963</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>1002328923</td>
+            <td>camilo</td>
+            <td>castro penagos</td>
+            <td>camib13@gmail.com</td>
+            <td>cll2 s 55b10</td>
+            <td>3226438966</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>1239615581</td>
+            <td>gabriela</td>
+            <td>peña</td>
+            <td>burbujasgy@hotmail.com</td>
+            <td>cr2 N 71d11</td>
+            <td>3153126688</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <th scope="row">7</th>
+            <td>1002155892</td>
+            <td>cristian camilo</td>
+            <td>camacho</td>
+            <td>camg14@gmail.com</td>
+            <td>cll6 s 67b11</td>
+            <td>3186457963</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td>1002328923</td>
+            <td>camilo</td>
+            <td>castro penagos</td>
+            <td>camib13@gmail.com</td>
+            <td>cll2 s 55b10</td>
+            <td>3226438966</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td>1239615581</td>
+            <td>gabriela</td>
+            <td>peña</td>
+            <td>burbujasgy@hotmail.com</td>
+            <td>cr2 N 71d11</td>
+            <td>3153126688</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <th scope="row">5</th>
+            <td>1002155892</td>
+            <td>cristian camilo</td>
+            <td>camacho</td>
+            <td>camg14@gmail.com</td>
+            <td>cll6 s 67b11</td>
+            <td>3186457963</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>1002328923</td>
+            <td>camilo</td>
+            <td>castro penagos</td>
+            <td>camib13@gmail.com</td>
+            <td>cll2 s 55b10</td>
+            <td>3226438966</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>1239615581</td>
+            <td>gabriela</td>
+            <td>peña</td>
+            <td>burbujasgy@hotmail.com</td>
+            <td>cr2 N 71d11</td>
+            <td>3153126688</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <th scope="row">6</th>
+            <td>1002155892</td>
+            <td>cristian camilo</td>
+            <td>camacho</td>
+            <td>camg14@gmail.com</td>
+            <td>cll6 s 67b11</td>
+            <td>3186457963</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <tr>
+            <th scope="row">13</th>
+            <td>1002328923</td>
+            <td>camilo</td>
+            <td>castro penagos</td>
+            <td>camib13@gmail.com</td>
+            <td>cll2 s 55b10</td>
+            <td>3226438966</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td>1239615581</td>
+            <td>gabriela</td>
+            <td>peña</td>
+            <td>burbujasgy@hotmail.com</td>
+            <td>cr2 N 71d11</td>
+            <td>3153126688</td>
+            <td>
+                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+                </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+              <button type="button" class="btn btn-dark">1</button>
+              <button type="button" class="btn btn-dark">2</button>
+              <button type="button" class="btn btn-dark">3</button>
+              <button type="button" class="btn btn-dark">4</button>
+            </div>
+          </div>
+      </div>
+  </div>
+<!-- Bootstrap Bundle with Popper javascrip-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

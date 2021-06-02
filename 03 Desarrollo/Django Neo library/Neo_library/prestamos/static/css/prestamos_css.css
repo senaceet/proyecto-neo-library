@@ -1,0 +1,39 @@
+.neon {
+    color: rgb(255, 255, 255);
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px rgb(255, 230, 0),
+      0 0 80px rgb(255, 230, 0),
+      0 0 90px rgb(255, 230, 0),
+      0 0 100px rgb(255, 230, 0),
+      0 0 150px rgb(255, 230, 0);
+ }
+ .schbtn{
+background-color: rgb(177, 180, 1);
+border: none;
+color: white;
+}
+.schbtn:hover{
+    background-color: rgb(255, 238, 0);
+    color: white;
+}
+.nlform{
+    background-color: rgba(128, 255, 0, 0.514);
+    border-radius: 10px;
+}
+.bgc{
+    background-color: rgb(82, 55, 14);
+    border-radius: 7px;
+}
+.arttoc{
+    background-color: rgb(92, 55, 20);
+    border-color: rgb(92, 55, 20);
+}
+.arttoc:hover{
+    background-color: rgb(128, 68, 13);
+}
+.modal-body {
+    background-image: url('../images/bgs/bg_n_loan_tree.jpg');
+ }

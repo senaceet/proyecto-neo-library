@@ -1,0 +1,119 @@
+.linearbg {
+    background-image: url(https://c.wallhere.com/photos/bf/ca/Retro_style_grid_synthwave_Retrowave-1822579.jpg!d);
+}
+.usuarioi{
+    max-width: 10%;
+}
+.neon_text {
+    color: rgb(255, 255, 255);
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px rgb(212, 0, 255),
+      0 0 80px rgb(212, 0, 255),
+      0 0 90px rgb(212, 0, 255),
+      0 0 100px rgb(212, 0, 255),
+      0 0 150px rgb(212, 0, 255);
+ }
+ .retro {
+    
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 01px;
+  }
+  .retro > .letter {
+    font-size: 2.5em;
+    font-weight: 800;
+    display: inline-block;
+    padding: 0 10px;
+    margin: 0 -10px;
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIzMiUiIHN0b3AtY29sb3I9IiMxODE5MWEiLz48c3RvcCBvZmZzZXQ9IjQwJSIgc3RvcC1jb2xvcj0iIzE1N2JlNiIvPjxzdG9wIG9mZnNldD0iNTIlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+PHN0b3Agb2Zmc2V0PSI1NiUiIHN0b3AtY29sb3I9IiMxODE5MWEiLz48c3RvcCBvZmZzZXQ9Ijg1JSIgc3RvcC1jb2xvcj0iIzE1N2JlNiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(32%, #18191a), color-stop(40%, #157be6), color-stop(52%, #ffffff), color-stop(56%, #18191a), color-stop(85%, #157be6), color-stop(100%, #ffffff));
+    background: -moz-linear-gradient(top, #18191a 32%, #157be6 40%, #ffffff 52%, #18191a 56%, #157be6 85%, #ffffff);
+    background: -webkit-linear-gradient(top, #18191a 32%, #157be6 40%, #ffffff 52%, #18191a 56%, #157be6 85%, #ffffff);
+    background: linear-gradient(to bottom, #18191a 32%, #157be6 40%, #ffffff 52%, #18191a 56%, #157be6 85%, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #FFF;
+  }
+.iconsp{
+  color: rgba(255, 255, 255, 0.521);
+  text-shadow:
+  0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px rgb(212, 0, 255),
+  0 0 80px rgb(212, 0, 255),
+  0 0 90px rgb(212, 0, 255),
+  0 0 100px rgb(212, 0, 255),
+  0 0 150px rgb(212, 0, 255);
+
+}
+.tabpres{
+  background: linear-gradient( #0000004f, #0a035052, #810cb83d,rgba(248, 101, 2, 0.349));
+  color: #fff;
+  border-width: 2px;
+  box-shadow:
+  inset 0 -3em 3em rgba(122, 16, 209, 0.1),
+        0 0 90px rgb(212, 0, 255),
+        0.3em 0.3em 1em rgba(180, 7, 233, 0.3);
+}
+.ieye{
+  color: rgb(252, 252, 252);
+}
+.ieye:hover{
+  cursor: pointer;
+  text-shadow:
+  0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px rgb(212, 0, 255),
+  0 0 80px rgb(212, 0, 255),
+  0 0 90px rgb(212, 0, 255),
+  0 0 100px rgb(212, 0, 255),
+  0 0 150px rgb(212, 0, 255);
+}
+/* modal*/
+.modal-body {
+  background: linear-gradient( #000000, #090350, #820cb8,rgb(248, 100, 2)) ;
+}
+.modal-header{
+  background: linear-gradient(to left, #090350d3,#000000d3 );
+  color: #fff;
+  text-shadow:
+  0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px rgb(0, 110, 255),
+  0 0 40px rgb(0, 110, 255),
+  0 0 40px rgb(0, 110, 255),
+  0 0 40px rgb(0, 110, 255),
+  0 0 40px rgb(0, 110, 255);
+}
+.modal-footer{
+  background: linear-gradient(to right, #090350d3,#000000d3 );
+}
+/*boton_ayuda*/
+.b_ayuda{
+  background-color: rgba(4, 91, 94, 0.863);
+  border-color: rgba(4, 91, 94, 0.671) ;
+}
+.b_ayuda:hover{
+  background: linear-gradient(to right, #9a99a8d3,#3de0e0d3);
+  border-color: rgb(2, 148, 136)
+}
+.b_ayuda:focus{
+  background: linear-gradient(to right,#fdfdfdd3,#48fafad3);
+  border-color: rgb(0, 247, 255);
+}
+/*boton_ok*/
+.b_ok{
+  background-color: darkorange;
+  border-color: darkorange;
+}
+.b_ok:hover{
+  background: linear-gradient(#820cb8,#f86402);
+}

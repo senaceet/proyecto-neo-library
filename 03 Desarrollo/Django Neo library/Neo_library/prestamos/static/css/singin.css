@@ -1,0 +1,28 @@
+
+.hallo{
+    background-color: rgba(255, 255, 255, 0.733);
+    border-radius: 25px;
+    width: 25rem;
+}
+.avatar{
+ max-height: 250px;
+}
+.fcc{
+ width: 17rem;
+}
+.clbto{
+    background-color: rgb(85, 85, 85);
+    border-color: rgb(85, 85, 85);
+}
+.clbto:hover{
+    background-color: rgb(73, 73, 73);
+    border-color:rgb(73, 73, 73) ;
+}
+.gbtn{
+    background-color: rgb(231, 136, 195);
+    border-color:  rgb(231, 136, 195);
+}
+.gbtn:hover{
+   background-color: rgb(233, 102, 182);
+   border-color: rgb(233, 102, 182);
+}
