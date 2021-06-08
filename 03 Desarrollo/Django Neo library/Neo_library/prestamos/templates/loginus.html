@@ -19,29 +19,37 @@
   <div class="col">
     <div class="container-fluid">
       <div class="my-4 mx-3 hallo">
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+               <li {% if message.tags %} class="{{message.tags}}" {% endif %}><h6 class="h6 text-danger">{{message}}</h6></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
           <div class="mb-3 row"><img class="avatar" src='https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairTheCaesar&accessoriesType=Blank&hairColor=Red&facialHairType=Blank&clotheType=GraphicShirt&clotheColor=PastelGreen&graphicType=Diamond&eyeType=Happy&eyebrowType=Default&mouthType=Smile&skinColor=Light'/></div>
           <div class="mb-3 row">
-              <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-              <div class="col-sm-10 mb-2">
-                  <input type="email" class="form-control fcc mx-3" id="exampleFormControlInput1" placeholder="name@example.com">
+            <form method="POST">
+              {%csrf_token%}
+              <div class="form-group">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Usuario</label>
+                <input type="text" class="form-control fcc mx-3" placeholder="Default input" aria-label="default input example" name="username">
               </div>
-            <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-              <div class="col-sm-10">
-                <input type="password" class="form-control fcc mx-3" id="inputPassword">
+              <div class="form-group">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña</label>
+                <input type="password" class="form-control fcc mx-3" id="inputPassword" name="password">
               </div>
-              <div class="my-3 row mx-5">
-                  <div class="col-2"></div>
-                  <div class="col-3"><button type="submit" class="btn btn-danger mb-3 clbto">Clear</button></div>
-                  <div class="col-4"><a href="./index.html"><button type="submit" class="btn btn-danger mb-3 gbtn "><i class="fas fa-book-open"></i> go</button></a></div>
-              </div>
+            <div class="my-3 row mx-5">
+                <div class="col-2"></div>
+                <div class="col-3"><button type="submit" class="btn btn-danger mb-3 clbto">Clear</button></div>
+                <div class="col-4"><button type="submit" class="btn btn-danger mb-3 gbtn "><i class="fas fa-book-open"></i> go</button></div>
             </div>
+          </div>
+          </form>
       </div>
       </div>
       </div>
+      <div class="col"></div>
   </div>
-  <div class="col"></div>
-</div>
  <!-- Bootstrap Bundle with Popper javascrip-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>

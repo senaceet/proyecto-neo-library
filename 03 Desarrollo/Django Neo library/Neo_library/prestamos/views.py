@@ -1,10 +1,36 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib import messages
 
 def index (request):
     return render(request,'index.html')
 def log_admin (request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user:
+            login(request,user)
+            return redirect('administration')
+        else:
+            messages.error(request,'usuario o contraseña incorrecta')
+
     return render(request,'loginad.html')
 def log_user (request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user:
+            login(request,user)
+            return redirect('index')
+        else:
+            messages.error(request,'usuario o contraseña incorrecta')
+
     return render(request,'loginus.html')
 def administration (request):
     return render (request,'administracion.html')
