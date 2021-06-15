@@ -1,5 +1,6 @@
 
 from django.contrib import admin
+from django.contrib.auth import logout
 from django.urls import path
 from prestamos import views
 
@@ -12,5 +13,6 @@ urlpatterns = [
     path('mis_prestamos',views.my_loans,name='mis_prestamos'),
     path('prestamos',views.loans,name='prestamos'),
     path('users',views.users,name='usuarios'),
-    path('books',views.books,name='libros')
+    path('books',views.books,name='libros'),
+    path('logout/',views.logout_view,name='logout')
 ]

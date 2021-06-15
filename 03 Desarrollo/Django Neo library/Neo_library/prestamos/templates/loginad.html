@@ -19,13 +19,19 @@
   <div class="col-4">
       <div class="my-4  hallo">
         {% if messages %}
-          <ul class="messages">
-            {% for message in messages %}
-               <li {% if message.tags %} class="{{message.tags}}" {% endif %}><h6 class="h6 text-danger">{{message}}</h6></li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-
+        {% for message in messages %}
+          {% if message.tags == 'succes' %}
+            <div class="alert alert-success" role="alert">
+            {{message}}
+            </div>
+          {% else %}
+             <div class="alert alert-danger" role="alert">
+               {{message}}.
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+             </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
           <div class="mb-3 row"><img class="avatar" src='https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShaggyMullet&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=MoustacheFancy&facialHairColor=Brown&clotheType=BlazerSweater&eyeType=Wink&eyebrowType=RaisedExcitedNatural&mouthType=Twinkle&skinColor=Light'/>
           </div>
           <div class="mb-3 row">

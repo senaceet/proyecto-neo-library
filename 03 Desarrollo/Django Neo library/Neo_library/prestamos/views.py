@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.contrib.auth import logout
 from django.contrib import messages
 
 def index (request):
@@ -14,6 +15,7 @@ def log_admin (request):
         user = authenticate(username=username, password=password)
         if user:
             login(request,user)
+            messages.success(request,'Bienvenido')
             return redirect('administration')
         else:
             messages.error(request,'usuario o contraseña incorrecta')
@@ -27,11 +29,18 @@ def log_user (request):
         user = authenticate(username=username, password=password)
         if user:
             login(request,user)
+            messages.success(request,'Bienvenido')
             return redirect('index')
         else:
             messages.error(request,'usuario o contraseña incorrecta')
 
     return render(request,'loginus.html')
+
+def logout_view (request):
+    logout (request)
+    messages.success(request,'sesion finalizada')
+    return redirect('log_admin')
+
 def administration (request):
     return render (request,'administracion.html')
 def books (request):
