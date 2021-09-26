@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class testviews (TestCase):
 
     def setUp(self):
-        #Create two users
+        #Create one users
         test_user1 = User.objects.create_user(username='testuser1', password='12345')
         test_user1.save()
         
