@@ -35,14 +35,14 @@ class Writer(models.Model):
         verbose_name_plural='Autores'
 
 
-class Genre(models.Model):
-    name_genre = models.CharField(max_length=30,verbose_name='Género')
+class tag(models.Model):
+    name_genre = models.CharField(max_length=30,verbose_name='Etiquta')
 
     def __str__(self):
         return self.name_genre
     class Meta:
-        db_table = 'Generos'
-        verbose_name = 'Género'
+        db_table = 'Etiqutas'
+        verbose_name = 'Etiquta'
 
 class Useer(models.Model):
     document_user = models.CharField(max_length=25,verbose_name='Numero de documento')
@@ -74,15 +74,14 @@ class Admin(models.Model):
 
 
 class Book(models.Model):
-    AVAILABILITY_CHOISES = [('D','Disponible'),('N', 'No disponible')]
     barcode = models.CharField(blank=True, null=True,max_length=30,verbose_name='Codigo de barras')
     title = models.CharField(max_length=40,verbose_name='Titulo')
     availability = models.BooleanField(verbose_name='Disponibilidad',null=True)
     image = models.ImageField(verbose_name='Imagen',blank=True, null=True)
-    coments = models.TextField(blank=True, null=True,verbose_name='Comentario')
+    Info = models.TextField(blank=True, null=True,verbose_name='Informacion')
     fk_editorial = models.ForeignKey(Editorial,on_delete=models.CASCADE,verbose_name='Editorial')
     fk_writer = models.ManyToManyField(Writer,verbose_name='Escritor(es)')
-    fk_genre =models.ManyToManyField(Genre,verbose_name='Género(s)')
+    fk_tag =models.ManyToManyField(tag,verbose_name='Etiqueta(s)')
 
     def __str__(self):
         return self.title
@@ -95,14 +94,17 @@ class Cliient(models.Model):
     fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE,verbose_name="Usuario")
     observation = models.TextField(blank=True, null=True,verbose_name='Comentario')
 
+    def __str__(self):
+        return str(self.fk_id_user)
     class Meta:
         db_table = 'clientes'
         verbose_name = 'cliente'
 
 class Loan(models.Model):
+    STATE_CHOISES = (('A','Activo'),('F', 'Finalizado'),('R','Retrazo'))
     date_loan = models.DateTimeField(auto_now=True,verbose_name='Fecha de préstamo')
     return_date = models.DateField(verbose_name='Fecha de devolucion')
-    current_state = models.BooleanField(verbose_name='Estado')
+    state = models.CharField(max_length=12,verbose_name='Estado',choices=STATE_CHOISES,null=True)
     coment = models.TextField(blank=True, null=True,verbose_name='Comentario')
     fk_id_client = models.ForeignKey(Cliient,on_delete=models.CASCADE,verbose_name='Usuario')
     fk_book = models.ManyToManyField(Book,verbose_name='Libro')

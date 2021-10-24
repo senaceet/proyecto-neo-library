@@ -8,9 +8,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name='index'),
     path('log_admin',views.log_admin,name='log_admin'),
-    path('login_user',views.log_user,name='log_user'),
+    path('login_user',views.log_user,name='log_user'), 
     path('administracion',views.administration,name='administration'),
-    path('mis_prestamos',views.my_loans,name='mis_prestamos'),
+    path('mis_prestamos/user/<int:Cliient_id>/',views.my_loans,name='mis_prestamos'),#vista a mis prestamos, (probando)
     path('prestamos',views.loans,name='prestamos'),
     path('users',views.users,name='usuarios'),
     path('books',views.books,name='libros'),

@@ -4,6 +4,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.http import Http404
+
+from .models import Cliient,Useer
 
 def index (request):
     return render(request,'index.html')
@@ -45,8 +48,12 @@ def administration (request):
     return render (request,'administracion.html')
 def books (request):
     return render (request,'libros.html')
-def my_loans (request):
-    return render (request,'mis_prestamos.html')
+def my_loans (request,Cliient_id): #teasting
+    try:
+        client = Cliient.objects.get(id=Cliient_id)
+    except Cliient.DoesNotExist:
+        raise Http404('client not found')
+    return render (request,'mis_prestamos.html',{'client':client,})
 def loans (request):
     return  render (request,'prestamos.html')
 def users (request):
