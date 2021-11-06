@@ -14,5 +14,6 @@ urlpatterns = [
     path('prestamos',views.loans,name='prestamos'),
     path('users',views.users,name='usuarios'),
     path('books',views.books,name='libros'),
-    path('logout/',views.logout_view,name='logout')
+    path('logout/',views.logout_view,name='logout'),
+    path('infolibro/',views.booksinfo,name='infolibro')
 ]

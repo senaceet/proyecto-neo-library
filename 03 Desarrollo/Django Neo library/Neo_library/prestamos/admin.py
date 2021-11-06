@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db.models.base import Model
-from .models import DocumentType,Useer,Book,Loan,Writer,tag,Editorial,Cliient
+from .models import DocumentType,Useer,Book,Loan,Writer,tag,Editorial,Cliient,Admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -56,5 +56,10 @@ class Editorial_admin(admin.ModelAdmin):
 #admin.site.register(cliient)
 @admin.register(Cliient)
 class Cliient_admin(admin.ModelAdmin):
+    search_fields = ('fk_id_user',)
+    list_per_page = (5)
+#admin.site.register(admin)
+@admin.register(Admin)
+class Admin_admin(admin.ModelAdmin):
     search_fields = ('fk_id_user',)
     list_per_page = (5)

@@ -6,6 +6,7 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.http import Http404
 
+from .forms import DocumetoForm
 from .models import Cliient,Useer
 
 def index (request):
@@ -57,4 +58,15 @@ def my_loans (request,Cliient_id): #teasting
 def loans (request):
     return  render (request,'prestamos.html')
 def users (request):
-    return render (request,'usuarios.html')
+    if request.method == 'POST':
+        filled_form = DocumetoForm(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'Documento: %s - %s, guardado exitosamente' %(filled_form.cleaned_data['acronym_doc'],filled_form.cleaned_data['nomb_type_document'],)
+            new_form = DocumetoForm()
+            return render (request,'usuarios.html', {'documentoform':new_form, 'note':note})
+    else:
+        form = DocumetoForm()
+        return render (request,'usuarios.html', {'documentoform':form})
+def booksinfo (request):
+    return render (request,'infolibro.html')

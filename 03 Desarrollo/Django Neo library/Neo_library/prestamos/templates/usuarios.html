@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +51,7 @@
       </div>
     </div>
   </nav> 
+  <h3 class="h3">{{ note }}</h3>
 <!-- Modal user -->
 <div class="modal fade" id="mnuevousuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
@@ -131,18 +133,21 @@
       </div>
       <div class="modal-body m-tipod">
         <div class="row m-2">
-          <div class="col">
-              <input type="text" class="form-control mt-2" placeholder="Tipo de documento*" aria-label="primer apellido">
+          <form action="{% url 'usuarios' %}" method="post">
+            {% csrf_token %}
+            <div class="col m-2">
+              {% render_field documentoform.nomb_type_document class="form-control col" placeholder="Tipo de documento" %}
             </div>
-            <div class="col">
-              <input type="text" class="form-control mt-2" placeholder="siglas*" aria-label="segundo apellido">
+            <div class="col m-2">
+              {% render_field documentoform.acronym_doc class="form-control col" placeholder="Siglas" %}
             </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>

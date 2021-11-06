@@ -67,6 +67,9 @@ class Useer(models.Model):
 class Admin(models.Model):
     fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE,verbose_name="Usuario")
 
+    def __str__(self):
+        return (self.fk_id_user)
+
     class Meta:
         db_table = 'Administradores'
         verbose_name = 'Administrador'
