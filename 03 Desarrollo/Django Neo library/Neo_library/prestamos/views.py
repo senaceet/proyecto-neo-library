@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.http import Http404
 
-from .forms import DocumetoForm
+from .forms import DocumetoForm,UserForm,Clientform
 from .models import Cliient,Useer
 
 def index (request):
@@ -58,15 +58,26 @@ def my_loans (request,Cliient_id): #teasting
 def loans (request):
     return  render (request,'prestamos.html')
 def users (request):
-    if request.method == 'POST':
+    if request.method == 'POST' and 'Documenttypeformbtn1' in request.POST:
         filled_form = DocumetoForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
             note = 'Documento: %s - %s, guardado exitosamente' %(filled_form.cleaned_data['acronym_doc'],filled_form.cleaned_data['nomb_type_document'],)
             new_form = DocumetoForm()
-            return render (request,'usuarios.html', {'documentoform':new_form, 'note':note})
+            return render (request,'usuarios.html', {'documentoform':new_form, 'note':note,'usuarioform':UserForm})
+    if request.method == 'POST' and 'userformbtn1' in request.POST:
+       filled_form =UserForm(request.POST)
+       if filled_form.is_valid():
+            created_user = filled_form.save()
+            created_userpk = created_user.id
+            client = Clientform({'fk_id_user':created_userpk})
+            client.save() 
+            note = 'Usuario: %s %s - %s, guardado exitosamente' %(filled_form.cleaned_data['first_name'],filled_form.cleaned_data['surname'],filled_form.cleaned_data['document_user'],)
+            new_form =UserForm()
+            return render (request,'usuarios.html', {'usuarioform':new_form,'documentoform':DocumetoForm, 'note':note})
     else:
-        form = DocumetoForm()
-        return render (request,'usuarios.html', {'documentoform':form})
+        form1 = DocumetoForm()
+        form2 =UserForm()
+        return render (request,'usuarios.html', {'documentoform':form1,'usuarioform':form2})
 def booksinfo (request):
     return render (request,'infolibro.html')
