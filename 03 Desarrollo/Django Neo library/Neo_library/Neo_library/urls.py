@@ -12,8 +12,8 @@ urlpatterns = [
     path('administracion',views.administration,name='administration'),
     path('mis_prestamos/user/<int:Cliient_id>/',views.my_loans,name='mis_prestamos'),#vista a mis prestamos, (probando)
     path('prestamos',views.loans,name='prestamos'),
-    path('users',views.users,name='usuarios'),
+    path('users',views.users,name='usuarios'), # probando
     path('books',views.books,name='libros'),
     path('logout/',views.logout_view,name='logout'),
-    path('infolibro/',views.booksinfo,name='infolibro')
+    path('infolibro/',views.booksinfo,name='infolibro'),
 ]

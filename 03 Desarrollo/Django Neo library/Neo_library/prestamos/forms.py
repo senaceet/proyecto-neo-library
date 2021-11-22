@@ -1,9 +1,8 @@
 from django import forms
 from .models import DocumentType,Useer,Cliient
 
-#class DocumetoForm(forms.Form):
-#   siglas = forms.CharField(label='siglas',max_length=100)
-#  document = forms.CharField(label='tipo de documento',max_length=100)
+#class clientidform(forms.Form):
+ # idc = forms.CharField(label='',max_length=100)
 
 class  DocumetoForm(forms.ModelForm):
     class Meta:

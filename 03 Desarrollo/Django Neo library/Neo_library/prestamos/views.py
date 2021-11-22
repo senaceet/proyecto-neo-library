@@ -59,13 +59,38 @@ def loans (request):
     return  render (request,'prestamos.html')
 def users (request):
     clients = Cliient.objects
+    #show info for modify
+    if request.method == 'GET' and 'showinfouserbtn1' in request.GET:
+        p=(request.GET)
+        pk = p['clientid']
+        form1 = DocumetoForm()
+        form2 =UserForm()
+        M_client = Useer.objects.filter(cliient=pk).first()
+        M_form =  UserForm(instance=M_client)
+        return render (request,'usuarios.html', {'clients':clients,'documentoform':form1,'usuarioform':form2,'modify_client':M_client,'modify_form':M_form,'p':p,'pk_client':pk})
+    # save modify user
+    if request.method == 'POST' and 'usermodifyformbtn2' in request.POST:
+        p=(request.POST)
+        pk = p['clientid']
+        M_client = Useer.objects.filter(cliient=pk).first()
+        M_form =  UserForm(instance=M_client)
+        filled_form = UserForm(request.POST,instance=M_client)
+        if filled_form.is_valid():
+            filled_form.save()
+            form = filled_form
+            note = 'Usuario: %s %s - %s, modificado exitosamente' %(filled_form.cleaned_data['first_name'],filled_form.cleaned_data['surname'],filled_form.cleaned_data['document_user'],)
+            form1 = DocumetoForm()
+            form2 =UserForm()
+            return render (request,'usuarios.html', {'clients':clients,'documentoform':form1,'usuarioform':form2,'note':note})
+    #crear tipo de documento
     if request.method == 'POST' and 'Documenttypeformbtn1' in request.POST:
         filled_form = DocumetoForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()
             note = 'Documento: %s - %s, guardado exitosamente' %(filled_form.cleaned_data['acronym_doc'],filled_form.cleaned_data['nomb_type_document'],)
             new_form = DocumetoForm()
-            return render (request,'usuarios.html', {'clients':clients,'documentoform':new_form, 'note':note,'usuarioform':UserForm})
+            return render (request,'usuarios.html', {'clients':clients,'documentoform':new_form, 'note':note,'usuarioform':UserForm,})
+    #crear usuario
     if request.method == 'POST' and 'userformbtn1' in request.POST:
        filled_form =UserForm(request.POST)
        if filled_form.is_valid():
@@ -75,10 +100,28 @@ def users (request):
             client.save() 
             note = 'Usuario: %s %s - %s, guardado exitosamente' %(filled_form.cleaned_data['first_name'],filled_form.cleaned_data['surname'],filled_form.cleaned_data['document_user'],)
             new_form =UserForm()
-            return render (request,'usuarios.html', {'clients':clients,'usuarioform':new_form,'documentoform':DocumetoForm, 'note':note})
+            return render (request,'usuarios.html', {'created_userpk':created_userpk,'clients':clients,'usuarioform':new_form,'documentoform':DocumetoForm, 'note':note,})
+    #show info for deleted user
+    if request.method == 'GET' and 'deleteuserbtn1' in request.GET:
+        d = (request.GET)
+        pk = d['clientid']
+        form1 = DocumetoForm()
+        form2 =UserForm()
+        D_client = Useer.objects.filter(cliient=pk).first()
+        return render (request,'usuarios.html', {'clients':clients,'documentoform':form1,'usuarioform':form2,'delte_client':D_client,'d':d,'pk_client':pk})
+    #confir delete user
+    if request.method == 'POST' and 'confirdeletebtn1' in request.POST:
+        d=(request.POST)
+        pk = d['clientid']
+        Useer.objects.filter(cliient=pk).delete()
+        form1 = DocumetoForm()
+        form2 =UserForm()
+        return render (request,'usuarios.html', {'clients':clients,'documentoform':form1,'usuarioform':form2,})
+        
+    #default
     else:
         form1 = DocumetoForm()
         form2 =UserForm()
-        return render (request,'usuarios.html', {'clients':clients,'documentoform':form1,'usuarioform':form2})
+        return render (request,'usuarios.html', {'clients':clients,'documentoform':form1,'usuarioform':form2,})
 def booksinfo (request):
     return render (request,'infolibro.html')
