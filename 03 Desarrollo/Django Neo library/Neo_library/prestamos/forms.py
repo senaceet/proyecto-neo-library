@@ -1,8 +1,5 @@
 from django import forms
-from .models import DocumentType,Useer,Cliient
-
-#class clientidform(forms.Form):
- # idc = forms.CharField(label='',max_length=100)
+from .models import DocumentType,Useer,Cliient,Editorial,Writer,tag,Book
 
 class  DocumetoForm(forms.ModelForm):
     class Meta:
@@ -19,3 +16,23 @@ class Clientform(forms.ModelForm):
     class Meta:
         model = Cliient
         fields = ['fk_id_user']
+
+class Editorialform(forms.ModelForm):
+    class Meta:
+        model = Editorial
+        fields = '__all__'
+
+class Writerform(forms.ModelForm):
+    class Meta:
+        model = Writer
+        fields = '__all__'
+
+class tagform(forms.ModelForm):
+    class Meta:
+        model = tag
+        fields = '__all__'
+
+class Bookform(forms.ModelForm):
+    class Meta:
+        model = Book
+        exclude = ['barcode']

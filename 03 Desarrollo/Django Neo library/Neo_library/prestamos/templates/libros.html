@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +46,7 @@
                     <i class="fas fa-cogs"></i> opciones avanzadas
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#Ngenero" ><i class="fas fa-plus"></i> Añadir genero</a></li>
+                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#Ngenero" ><i class="fas fa-plus"></i> Añadir etiqueta</a></li>
                   <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#Nautor" ><i class="fas fa-plus"></i> Añadir autor</a></li>
                   <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#Neditorial" ><i class="fas fa-plus"></i> Añadir editorial</a></li>
                 </ul>
@@ -62,172 +63,64 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body m-bgi newbm">
-              <div class="row m-1">
-                <div class="col p-0">
-                 <input class="form-control" type="text" placeholder="ID #0000" aria-label="readonly book id" readonly>
+              <form action="{% url 'libros' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row m-1">
+                  <div class="col">
+                    <h6 class="h6">Titulo del libro</h6>{% render_field libroform.title class="form-control" placeholder="Titulo del libro" %}
+                  </div>
+                  <div class="col">
+                    <h6 class="h6">Disponible?</h6>{% render_field libroform.availability class="form-control"  %}
+                  </div>
                 </div>
-                <div class="col">
-                    <div class="form-check form-switch mt-2">
-                        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"><h6 class="h6 ">Disponible</h6></label>
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                      </div>
+                <div class="row m-1">
+                  <div class="col">
+                    <h6 class="h6">Portada</h6>{% render_field libroform.image class="form-control" type="file" %}
+                  </div>
+                  <div class="col">
+                    <h6 class="h6">Informacion del libro</h6>{% render_field libroform.Info class="form-control" %}
+                  </div>
                 </div>
-            </div>
-            <div class="row m-1">
-                <input class="form-control" type="text" placeholder="Titulo" aria-label="book title">
-            </div>
-            <div class="row m-1">
-                <div class="col p-0">
-                    <select class="form-select " size="3" aria-label="size 3 select example">
-                        <option selected>Autores</option>
-                        <option value="1">Autor 1</option>
-                        <option value="2">Autor 2</option>
-                        <option value="3">Autor 3</option>
-                        <option value="4">Autor 4</option>
-                        <option value="5">Autor 5</option>
-                        <option value="6">Autor 6</option>
-                        <option value="7">Autor 7</option>
-                        <option value="8">Autor 8</option>
-                        <option value="9">Autor 9</option>
-                        <option value="10">Autor 10</option>
-                      </select>
+                <div class="row m-1">
+                  <div class="col">
+                    <h6 class="h6">Seleccione la editorial</h6>{% render_field libroform.fk_editorial class="form-control" %}
+                  </div>
+                  <div class="col">
+                    <h6 class="h6">Seleccione el escritor o escritores</h6>{% render_field libroform.fk_writer class="form-select"  %}
+                  </div>
                 </div>
-                <div class="col">
-                    <select class="form-select mt-3" aria-label="Default select example">
-                        <option selected>Editorial</option>
-                        <option value="1">editorial 1</option>
-                        <option value="2">editorial 2</option>
-                        <option value="3">editorial 3</option>
-                        <option value="4">editorial 4</option>
-                        <option value="5">editorial 5</option>
-                      </select>
+                <div class="row m-1">
+                  <h6 class="h6">Seleccione las etiquetas del libro</h6>
+                  {% render_field libroform.fk_tag class="form-select" %}
                 </div>
-            </div>
-            <div class="row m-1">
-                <h5 class="h5 text-center">Generos</h5>
-                <div class="col">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">genero  </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                        <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                      </div>
-                </div>
-            </div>
-            <div class="row m-1">
-                <div class="col">
-                    <label for="exampleFormControlTextarea1" class="form-label ">Comentario</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-            </div>
-            <div class="row m-1">
-              <div class="col">
-                <label for="formFileSm" class="form-label">Imagen</label>
-                <input class="form-control form-control-sm" id="formFileSm" type="file">
-              </div>
-          </div>
-            <div class="row m-1">
-                <div class="col">
-                    <input class="form-control" type="text" placeholder="barcode" aria-label="barcode" disabled>
-                </div>
-            </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
               <button type="button" class="btn btn-primary mb-2 arttoc"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-              <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+              <button type="submit" name="savebookbtn1" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+            </form>
             </div>
           </div>
         </div>
       </div>
-<!--modal genero-->
+<!--modal etiqueta-->
 <div class="modal fade" id="Ngenero" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Genero</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Añadir etiqueta</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body m-tipod newgm">
-        <div class="row m-2">
-          <div class="col">
-            <input class="form-control mt-2" type="text" placeholder="ID #0000" aria-label="readonly genere id" readonly>
-            </div>
-            <div class="col">
-              <input type="text" class="form-control mt-2" placeholder="Nombre genero*" aria-label="segundo apellido">
-            </div>
+        <form action="{% url 'libros' %}" method="post">
+          {% csrf_token %}
+          {% render_field etiquetaform.name_tag class="form-control" placeholder="Nombre de la etiqueta" %}
         </div>
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" name="tagsavebtn" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>
@@ -237,23 +130,19 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Autor</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Añadir Autor</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body m-tipod newam">
-        <div class="row m-2">
-          <div class="col">
-            <input class="form-control mt-2" type="text" placeholder="ID #0000" aria-label="readonly genere id" readonly>
-            </div>
-            <div class="col">
-              <input type="text" class="form-control mt-2" placeholder="Nombre autor*" aria-label="segundo apellido">
-            </div>
-        </div>
+        <form action="{% url 'libros' %}" method="post">
+          {% csrf_token %}
+        {% render_field escritorform.name_writer class="form-control" placeholder="Nombre del escritor" %}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" name="writersavebtn" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>
@@ -263,27 +152,24 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nueva Editorial</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Añadir Editorial</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body m-tipod newem">
-        <div class="row m-2">
-          <div class="col">
-            <input class="form-control mt-2" type="text" placeholder="ID #0000" aria-label="readonly genere id" readonly>
-            </div>
-            <div class="col">
-              <input type="text" class="form-control mt-2" placeholder="Nombre editorial*" aria-label="segundo apellido">
-            </div>
-        </div>
+        <form action="{% url 'libros' %}" method="post">
+          {% csrf_token %}
+          {% render_field editorialform.name_editorial class="form-control" placeholder="Editorial ejemplo" %}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" name="editorialsavebtn" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>
 </div>
+<h2 class="h2">{{note}}</h2>
 <!--container books-->
       <div class="container-fluid">
           <div class="row">
@@ -359,160 +245,7 @@
                 </div>
               </div>
           </div>
-          <div class="row">
-            <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_El_gran_diseño.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">El gran diseño</h5>
-                  <ul class="card-tex">
-                      <li>Genero: <span class="badge bg-primary">fantasia</span>
-                        <span class="badge bg-secondary">drama</span></li>
-                      <li>Autor: Stephen Hawking, Leonard Mlodinow</li>
-                      <li>Editorial: perro amarillo</li>
-                  </ul>
-                  <span class="badge rounded-pill bg-danger">No disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_Desayuno_con_particulas.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Desayuno con particulas</h5>
-                  <ul class="card-text">
-                      <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-info text-dark">Comedia</span> <span class="badge bg-dark">Novela</span> </li>
-                      <li>Autor:  Sonia Fernández-Vidal, Francesc Miralles</li>
-                      <li>Editorial: perro espacial </li>
-                  </ul>
-                  <span class="badge rounded-pill bg-success"> disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_el_universo_elegante.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">El universo elegante</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Brian B. Greene </li>
-                    <li>Editorial: Planeta </li>
-                </ul>
-                <span class="badge rounded-pill bg-success"> disponible</span>
-                <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_anatomia_artistica_2.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Anatomia artistica 2</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Michel Lauricella</li>
-                    <li>Editorial: Gato negro</li>
-                </ul>
-                <span class="badge rounded-pill bg-danger">No disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{%static 'images/books/portada_3_de_la_tierra_a_la_luna.jpg'%}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">De la tierra a la luna</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-warning text-dark">suspenso</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Julio verne </li>
-                    <li>Editorial: Azteca </li>
-                </ul>
-                <span class="badge rounded-pill bg-success"> disponible</span>
-                <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-          </div>
-          <div class="row">
-            <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_3_viaje_centro_de_la-tierra.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Viaje al centro de la tierra</h5>
-                  <ul class="card-tex">
-                      <li>Genero: <span class="badge bg-primary">fantasia</span>
-                        <span class="badge bg-secondary">drama</span></li>
-                      <li>Autor: julio verne</li>
-                      <li>Editorial: perro amarillo</li>
-                  </ul>
-                  <span class="badge rounded-pill bg-danger">No disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada-archipielago_gulag.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Archipielago gulag</h5>
-                  <ul class="card-text">
-                      <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-info text-dark">Comedia</span> <span class="badge bg-dark">Novela</span> </li>
-                      <li>Autor: Aleksandr Solzhenitsyn </li>
-                      <li>Editorial: perro espacial </li>
-                  </ul>
-                  <span class="badge rounded-pill bg-success"> disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_1_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Veinte mil lenguas de viaje submarino</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Julio verne </li>
-                    <li>Editorial: Planeta </li>
-                </ul>
-                <span class="badge rounded-pill bg-success"> disponible</span>
-                <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_1_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Veinte mil leguas de viaje submarino</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Julio verne</li>
-                    <li>Editorial: Gato negro</li>
-                </ul>
-                <span class="badge rounded-pill bg-danger">No disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_1_de_la_tierra_a_la_luna.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">De la tierra a la luna</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-warning text-dark">suspenso</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Julio verne </li>
-                    <li>Editorial: Azteca </li>
-                </ul>
-                <span class="badge rounded-pill bg-success"> disponible</span>
-                <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-          </div>
-          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group me-2" role="group" aria-label="First group">
-              <button type="button" class="btn btn-dark">1</button>
-              <button type="button" class="btn btn-dark">2</button>
-              <button type="button" class="btn btn-dark">3</button>
-              <button type="button" class="btn btn-dark">4</button>
-            </div>
-          </div>
+        
       </div>
 <!-- Bootstrap Bundle with Popper javascrip-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>

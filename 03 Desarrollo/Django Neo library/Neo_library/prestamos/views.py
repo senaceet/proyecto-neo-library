@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.http import Http404
 
-from .forms import DocumetoForm,UserForm,Clientform
+from .forms import DocumetoForm,UserForm,Clientform,Editorialform,Writerform,tagform,Bookform
 from .models import Cliient,Useer
 
 def index (request):
@@ -47,8 +47,42 @@ def logout_view (request):
 
 def administration (request):
     return render (request,'administracion.html')
+#books page
 def books (request):
-    return render (request,'libros.html')
+    tag = tagform()
+    writer = Writerform()
+    editorial = Editorialform()
+    book = Bookform()
+    #save tag
+    if request.method == 'POST' and 'tagsavebtn' in request.POST:
+        filled_form = tagform(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'Etiqueta %s guardada correctamente' %(filled_form.cleaned_data['name_tag'])
+            new_form = DocumetoForm()
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note})
+    #save editorial
+    if request.method == 'POST' and 'editorialsavebtn' in request.POST:
+        filled_form = Editorialform(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'editorial %s guardada correctamente' %(filled_form.cleaned_data['name_editorial'])
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note})
+    #save writer
+    if request.method == 'POST' and 'writersavebtn' in request.POST:
+        filled_form = Writerform(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'Autor(a) %s guardado correctamente' %(filled_form.cleaned_data['name_writer'])
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note})
+    if request.method == 'POST' and 'savebookbtn1' in request.POST:
+        filled_form =Bookform(request.POST, request.FILES)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'libro %s guardado correctamente' %(filled_form.cleaned_data['title'])
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note})
+    else:    
+        return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book})
 def my_loans (request,Cliient_id): #teasting
     try:
         client = Cliient.objects.get(id=Cliient_id)
@@ -57,6 +91,7 @@ def my_loans (request,Cliient_id): #teasting
     return render (request,'mis_prestamos.html',{'client':client,})
 def loans (request):
     return  render (request,'prestamos.html')
+#users page
 def users (request):
     clients = Cliient.objects
     #show info for modify

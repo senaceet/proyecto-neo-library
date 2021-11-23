@@ -36,10 +36,10 @@ class Writer(models.Model):
 
 
 class tag(models.Model):
-    name_genre = models.CharField(max_length=30,verbose_name='Etiquta')
+    name_tag = models.CharField(max_length=30,verbose_name='Etiquta')
 
     def __str__(self):
-        return self.name_genre
+        return self.name_tag
     class Meta:
         db_table = 'Etiqutas'
         verbose_name = 'Etiquta'
@@ -54,7 +54,7 @@ class Useer(models.Model):
     password_ad = models.CharField(max_length=20,verbose_name='Contraseña')
     email = models.EmailField(max_length=111,verbose_name='Correo')
     address = models.CharField(max_length=20,verbose_name='Dirección')
-    cell_phone = models.BigIntegerField(verbose_name='Teléfono')
+    cell_phone = models.CharField(max_length=25,verbose_name='Teléfono')
 
     class Meta:
         db_table = 'Usuarios'

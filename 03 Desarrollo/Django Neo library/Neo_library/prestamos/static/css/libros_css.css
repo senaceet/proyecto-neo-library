@@ -36,5 +36,5 @@ color: white;
     background-color: coral;
 }
 .l-bg-cherry {
-    background: linear-gradient(to top, #b85e0b, rgb(183, 0, 255)) !important;
+    background:linear-gradient(rgb(245, 150, 7),rgb(236, 40, 243),rgb(1, 1, 31));
 }

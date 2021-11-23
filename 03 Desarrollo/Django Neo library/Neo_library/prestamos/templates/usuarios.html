@@ -25,13 +25,13 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./administracion.html"><h5 class="h5">Inicio</h5></a>
+            <a class="nav-link active" aria-current="page" href="{% url 'administration' %}"><h5 class="h5">Inicio</h5></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./libros.html"><h5 class="h5">Libros</h5></a>
+            <a class="nav-link" href="{% url 'libros' %}"><h5 class="h5">Libros</h5></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./prestamos.html"><h5 class="h5">Prestamos</h5></i></a>
+            <a class="nav-link" href="{% url 'prestamos' %}"><h5 class="h5">Prestamos</h5></i></a>
           </li>
           <li>
             <form class="d-flex mx-lg-4 ">
