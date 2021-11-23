@@ -19,7 +19,7 @@
     <header>
         <nav class="navbar retro">
           <div class="container-fluid retro">
-            <h1 class="h1 letter"><img src="https://i.pinimg.com/originals/5f/58/b6/5f58b675f469bcdb420420d1be901a76.png" alt="user"  class="usuarioi"> paco camilo camacho</h1>
+            <h1 class="h1 letter"><img src="https://i.pinimg.com/originals/5f/58/b6/5f58b675f469bcdb420420d1be901a76.png" alt="user"  class="usuarioi"> {{client.fk_id_user.first_name}} {{client.fk_id_user.surname}}</h1><!--mejorable?-->
             <a href="./index.html"><i class=" iconsp fas fa-home fa-2x"></i></a>
             <a href=""><i class=" iconsp fas fa-question fa-2x"></i></a>
           </div>
@@ -30,7 +30,7 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content ">
       <div class="modal-header">
-        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">Prestamo</h5>
+        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">Prestamo</h5> 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -109,7 +109,7 @@
   </div>
 </div> 
     <div class="container-fluid px-3">
-        <div><h2 class="h3 neon_text">Ultimos prestamos</h2></div>
+        <div><h2 class="h3 neon_text">Ultimos prestamos {{client.id}}</h2></div>
         <table class="table">
           <thead>
             <tr class="table-dak tabpres">

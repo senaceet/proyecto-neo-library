@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--asomefont-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
+    <!--maind css-->
+    <link rel="stylesheet" href="{% static 'css/infolibro.css' %}">
+    <!--icon sh-->
+    <link rel="shortcut icon" href="https://www.freeiconspng.com/uploads/retrowave-sun-with-alpha-background-vaporwave-png-27.png">
+    <title>info libro</title>
+</head>
+<body class="stylebackground">
+    <header>
+        <nav class="navbar navback">
+          <div class="container-fluid">
+            <img src="https://www.freeiconspng.com/thumbs/vaporwave-png/vaporwave-keyboard-png-8.png" alt="user"  class="bookid"> 
+            <h1 class="h1 letter80s">DE LA TIERRA A LA LUNA</h1>
+            <div>
+                <a href="./index.html"><i class=" iconsp fas fa-home fa-2x navbotts"></i></a>
+                <a href=""><i class=" iconsp fas fa-question fa-2x navbotts"></i></a>
+            </div>
+          </div>
+        </nav>
+    </header>
+    <div class="row   mt-4 m-2">
+      <div class="col-lg-2">
+        <div class=""><img src="{% static 'images/books/portada_1_de_la_tierra_a_la_luna.jpg' %}" alt="" class="portlibro "></div>
+      </div>
+      <div class="col-lg-7">
+        <div class="binfo m-4">
+          <h5>Genero:</h5>
+          <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span>
+          <h5>Autor:</h5>
+          Julio Verne
+          <h5>Editorial:</h5>
+          Gato azul
+          <br>
+          <p>De la Tierra a la Luna es una novela «científica» y «satírica» del escritor Julio Verne, publicada en el "Journal des débats politiques et littéraires" desde el 14 de septiembre hasta el 14 de octubre de 1865, y como un solo volumen el 25 de octubre de ese mismo año.
+          </p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="singon">
+          <h1 class="lettersingon">DIS<span id="offset">PONI</span>BLE</h1>
+        </div>
+        <br></br>
+        <div class="singoff">
+          <h1 class="lettersingoff">NO DISPONIBLE</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row m-3">
+      <h3 class="h3 titlerb">Libros relacionados</h3>
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row mx-4 carurowcol">
+              <div class="col carurowcol">
+                <img src="{% static 'images/books/portada_1_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="caruselp d-block w-100" alt="...">
+              </div>
+              <div class="col carurowcol">
+                <img src="{% static 'images/books/portada_2_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="caruselp d-block w-100" alt="...">
+              </div>
+              <div class="col carurowcol">
+                <img src="{% static 'images/books/portada_1_La_vuelta_al_mundo_en_80_dias.jpg' %}" class="caruselp d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row mx-4 carurowcol">
+              <div class="col carurowcol">
+                <img src="{% static 'images/books/portada_3_de_la_tierra_a_la_luna.jpg' %}" class="caruselp d-block w-100" alt="...">
+              </div>
+              <div class="col carurowcol">
+                <img src="{% static 'images/books/portada_3_viaje_centro_de_la-tierra.jpg' %}" class="caruselp d-block w-100" alt="...">
+              </div>
+              <div class="col carurowcol">
+                <img src="{% static 'images/books/portada_la_luna_de_pluton.jpg' %}" class="caruselp d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev botton-carusel" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next botton-carusel" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+<!-- Bootstrap Bundle with Popper javascrip-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

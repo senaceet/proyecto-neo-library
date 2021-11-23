@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +51,7 @@
       </div>
     </div>
   </nav> 
+  <h3 class="h3">{{ note }}</h3>
 <!-- Modal user -->
 <div class="modal fade" id="mnuevousuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
@@ -59,64 +61,116 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body m-bgi">
+        <form action="{% url 'usuarios' %}" method="post">
+          {% csrf_token %}
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.document_user class="form-control" placeholder="Nuemero de documento" %}
+            </div>
+            <div class="col">
+              {% render_field usuarioform.fk_type_document class="form-select" placeholder="tipo de documento" %}
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.first_name class="form-control" placeholder="Primer Nombre" %}
+            </div>
+            <div class="col">
+              {% render_field usuarioform.sec_name class="form-control" placeholder="Segundo Nombre" %}
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.surname class="form-control" placeholder="Primer apellido" %}
+            </div>
+            <div class="col">
+              {% render_field usuarioform.sec_surname class="form-control" placeholder="Segundo apellido" %}
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.password_ad class="form-control" placeholder="contraseña" %}
+            </div>
+            <div class="col">
+              {% render_field usuarioform.email class="form-control" placeholder="correo" %}
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.address class="form-control" placeholder="Direccion" %}
+            </div>
+            <div class="col">
+              {% render_field usuarioform.cell_phone class="form-control" placeholder="telfono" %}
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
+        <button type="button" class="btn btn-primary mb-2 arttoc"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
+        <button type="submit" name="userformbtn1" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 
+<!--Modal modify user-->
+<div class="modal fade" id="mmodifyusuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">Editar usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-bgi">
+        <form action="{% url 'usuarios' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="clientid" value={{pk_client}}>
         <div class="row m-2">
           <div class="col">
-              <select class="form-select mt-2" aria-label="Default select example">
-                  <option selected>Tipo De Documento</option>
-                  <option value="1">CC</option>
-                  <option value="2">CE</option>
-                  <option value="3">TI</option>
-                </select>
+            {% render_field modify_form.document_user class="form-control" placeholder="Nuemero de documento" %}
           </div>
           <div class="col">
-            <input type="text" class="form-control mt-2" placeholder="N° Documento*" aria-label="Documento">
+            {% render_field modify_form.fk_type_document class="form-select" placeholder="tipo de documento" %}
           </div>
         </div>
         <div class="row m-2">
           <div class="col">
-              <input type="text" class="form-control" placeholder="Primer nombre*" aria-label="primer nombre">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Segundo nombre" aria-label="segundo nombre">
-            </div>
+            {% render_field modify_form.first_name class="form-control" placeholder="Primer Nombre" %}
+          </div>
+          <div class="col">
+            {% render_field modify_form.sec_name class="form-control" placeholder="Segundo Nombre" %}
+          </div>
         </div>
         <div class="row m-2">
           <div class="col">
-              <input type="text" class="form-control" placeholder="Primer Apellido*" aria-label="primer apellido">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Segundo Apellido" aria-label="segundo apellido">
-            </div>
+            {% render_field modify_form.surname class="form-control" placeholder="Primer apellido" %}
+          </div>
+          <div class="col">
+            {% render_field modify_form.sec_surname class="form-control" placeholder="Segundo apellido" %}
+          </div>
         </div>
         <div class="row m-2">
           <div class="col">
-              <input type="text" class="form-control" placeholder="Direccion*" aria-label="direccion">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Telefono*" aria-label="Telefono">
-            </div>
+            {% render_field modify_form.password_ad class="form-control" placeholder="contraseña" %}
+          </div>
+          <div class="col">
+            {% render_field modify_form.email class="form-control" placeholder="correo" %}
+          </div>
         </div>
         <div class="row m-2">
           <div class="col">
-              <h6 class="h6 mt-2 white">Correo --></h6>
-            </div>
-            <div class="col">
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp " placeholder="name@example.com">
-            </div>
-        </div>
-        <div class="row m-2">
+            {% render_field modify_form.address class="form-control" placeholder="Direccion" %}
+          </div>
           <div class="col">
-            <h6 class="h6 mt-2 white ">Contraseña --></h6>
-            </div>
-            <div class="col">
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
+            {% render_field modify_form.cell_phone class="form-control" placeholder="telfono" %}
+          </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary mb-2 arttoc"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" name="usermodifyformbtn2" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>
@@ -126,210 +180,106 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo tipo de documento</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Añadir tipo de documento</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body m-tipod">
         <div class="row m-2">
-          <div class="col">
-              <input type="text" class="form-control mt-2" placeholder="Tipo de documento*" aria-label="primer apellido">
+          <form action="{% url 'usuarios' %}" method="post">
+            {% csrf_token %}
+            <div class="col m-2">
+              {% render_field documentoform.nomb_type_document class="form-control col" placeholder="Tipo de documento" %}
             </div>
-            <div class="col">
-              <input type="text" class="form-control mt-2" placeholder="siglas*" aria-label="segundo apellido">
+            <div class="col m-2">
+              {% render_field documentoform.acronym_doc class="form-control col" placeholder="Siglas" %}
             </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit"  name="Documenttypeformbtn1" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal delete user? -->
+<div class="modal fade" id="mdeleteuser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-delete">
+        <form action="{% url 'usuarios' %}" method="post">
+         {% csrf_token %}
+         <input type="hidden" name="clientid" value={{pk_client}}>
+        <h4 class="h4">Esta a pundo de eliminar el usuario: {{delte_client.document_user}} {{delte_client.first_name}} {{delte_client.surname}} </h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="confirdeletebtn1" class="btn btn-danger">Eliminar</button>
+      </form>
       </div>
     </div>
   </div>
 </div>
 <!--table-->
-  <div class="container-fluid mt-2 ">
-    <table class="table table-dark table-striped">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">N° DOCUMENTO</th>
-            <th scope="col">NOMBRES</th>
-            <th scope="col">APELLIDOS</th>
-            <th scope="col">CORREO</th>
-            <th scope="col">DIRECCION</th>
-            <th scope="col">TELEFONO</th>
-            <th scope="col">OPCIONES <i class="fas fa-sync-alt"></i></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>1002155892</td>
-            <td>cristian camilo</td>
-            <td>camacho</td>
-            <td>camg14@gmail.com</td>
-            <td>cll6 s 67b11</td>
-            <td>3186457963</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>1002328923</td>
-            <td>camilo</td>
-            <td>castro penagos</td>
-            <td>camib13@gmail.com</td>
-            <td>cll2 s 55b10</td>
-            <td>3226438966</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>1239615581</td>
-            <td>gabriela</td>
-            <td>peña</td>
-            <td>burbujasgy@hotmail.com</td>
-            <td>cr2 N 71d11</td>
-            <td>3153126688</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <th scope="row">7</th>
-            <td>1002155892</td>
-            <td>cristian camilo</td>
-            <td>camacho</td>
-            <td>camg14@gmail.com</td>
-            <td>cll6 s 67b11</td>
-            <td>3186457963</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <tr>
-            <th scope="row">10</th>
-            <td>1002328923</td>
-            <td>camilo</td>
-            <td>castro penagos</td>
-            <td>camib13@gmail.com</td>
-            <td>cll2 s 55b10</td>
-            <td>3226438966</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <tr>
-            <th scope="row">11</th>
-            <td>1239615581</td>
-            <td>gabriela</td>
-            <td>peña</td>
-            <td>burbujasgy@hotmail.com</td>
-            <td>cr2 N 71d11</td>
-            <td>3153126688</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <th scope="row">5</th>
-            <td>1002155892</td>
-            <td>cristian camilo</td>
-            <td>camacho</td>
-            <td>camg14@gmail.com</td>
-            <td>cll6 s 67b11</td>
-            <td>3186457963</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>1002328923</td>
-            <td>camilo</td>
-            <td>castro penagos</td>
-            <td>camib13@gmail.com</td>
-            <td>cll2 s 55b10</td>
-            <td>3226438966</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>1239615581</td>
-            <td>gabriela</td>
-            <td>peña</td>
-            <td>burbujasgy@hotmail.com</td>
-            <td>cr2 N 71d11</td>
-            <td>3153126688</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <th scope="row">6</th>
-            <td>1002155892</td>
-            <td>cristian camilo</td>
-            <td>camacho</td>
-            <td>camg14@gmail.com</td>
-            <td>cll6 s 67b11</td>
-            <td>3186457963</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <tr>
-            <th scope="row">13</th>
-            <td>1002328923</td>
-            <td>camilo</td>
-            <td>castro penagos</td>
-            <td>camib13@gmail.com</td>
-            <td>cll2 s 55b10</td>
-            <td>3226438966</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-          <tr>
-            <th scope="row">15</th>
-            <td>1239615581</td>
-            <td>gabriela</td>
-            <td>peña</td>
-            <td>burbujasgy@hotmail.com</td>
-            <td>cr2 N 71d11</td>
-            <td>3153126688</td>
-            <td>
-                <button type="button" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
-                </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="row">
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group me-2" role="group" aria-label="First group">
-              <button type="button" class="btn btn-dark">1</button>
-              <button type="button" class="btn btn-dark">2</button>
-              <button type="button" class="btn btn-dark">3</button>
-              <button type="button" class="btn btn-dark">4</button>
-            </div>
-          </div>
-      </div>
-  </div>
+<div class="container-fluid mt-2">
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">N° DOCUMENTO</th>
+        <th scope="col">NOMBRES</th>
+        <th scope="col">APELLIDOS</th>
+        <th scope="col">CORREO</th>
+        <th scope="col">DIRECCION</th>
+        <th scope="col">TELEFONO</th>
+        <th scope="col">OPCIONES <i class="fas fa-sync-alt"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for client in clients.all %}
+      <tr>
+        <th scope="row">{{client.id}}</th>
+        <td>{{client.fk_id_user.document_user}}</td>
+        <td>{{client.fk_id_user.first_name}} {{client.fk_id_user.sec_name|default_if_none:""}}</td>
+        <td>{{client.fk_id_user.surname}} {{client.fk_id_user.sec_surname|default_if_none:""}}</td>
+        <td>{{client.fk_id_user.email}}</td>
+        <td>{{client.fk_id_user.address}}</td>
+        <td>{{client.fk_id_user.cell_phone}}</td>
+        <td>
+          <form acion="{% url 'usuarios' %}#mmodifyusuario" method="get">
+            <input name="clientid" id="clientid" type="hidden" value={{client.id}}>
+            <button type="submit" name="showinfouserbtn1" data-bs-toggle="modal" data-bs-target="#mmodifyusuario" class="btn btn-warning"><i class="fas fa-user-edit"></i></button>
+            <button type="submit" name="deleteuserbtn1"class="btn btn-danger"><i class="fas fa-user-alt-slash"></i></button>
+          </form>
+            </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 <!-- Bootstrap Bundle with Popper javascrip-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+{% if p  %}
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById("mmodifyusuario"), {});
+    document.onreadystatechange = function () {
+   myModal.show();
+    };
+  </script>
+{% endif %}
+{% if d  %}
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById("mdeleteuser"), {});
+    document.onreadystatechange = function () {
+   myModal.show();
+    };
+  </script>
+{% endif %}
 </body>
 </html>
