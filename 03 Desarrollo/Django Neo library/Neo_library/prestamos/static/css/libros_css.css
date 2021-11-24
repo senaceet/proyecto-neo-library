@@ -21,7 +21,8 @@ color: white;
 }
 /*modal nuevo libro*/
 .newbm{
-    background-image: url('../images/bgs/bg_n_book_paper.jpg');
+    background: linear-gradient(blue,purple,black,rgb(240, 111, 240) ,rgb(255, 153, 0));
+    color: blanchedalmond;
 }
 /*modal nuevo autor*/
 .newam{
@@ -37,4 +38,11 @@ color: white;
 }
 .l-bg-cherry {
     background:linear-gradient(rgb(245, 150, 7),rgb(236, 40, 243),rgb(1, 1, 31));
+}
+.ifoport{
+    max-width: 230px;
+}
+.m-delete{
+    background-color: rgb(245, 8, 39);
+    color: rgb(252, 252, 252);
 }

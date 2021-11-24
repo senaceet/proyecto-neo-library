@@ -169,85 +169,132 @@
     </div>
   </div>
 </div>
+<!--modal info libro-->
+<div class="modal fade" id="minfolibro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">Info libro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-bgi newbm">
+        <form action="{% url 'libros' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row m-1">
+            <div class="col">
+              <h6 class="h6">Titulo del libro</h6>{% render_field infofrom.title class="form-control" placeholder="Titulo del libro" %}
+            </div>
+            <div class="col">
+              <h6 class="h6">Disponible?</h6>{% render_field infofrom.availability class="form-control"  %}
+            </div>
+          </div>
+          <div class="row m-1">
+            <div class="col">
+              <h6 class="h6">Portada</h6>{% if infobook.image %}
+              <img src="{{infobook.image.url}}" alt="portada" class="card-img-top ifoport" alt="..."><br>
+              {% endif %}{% render_field infofrom.image  %}
+            </div>
+            <div class="col">
+              <h6 class="h6">Informacion del libro</h6>{% render_field infofrom.Info class="form-control" %}
+            </div>
+          </div>
+          <div class="row m-1">
+            <div class="col">
+              <h6 class="h6">Seleccione la editorial</h6>{% render_field infofrom.fk_editorial class="form-control" %}
+            </div>
+            <div class="col">
+              <h6 class="h6">Seleccione el escritor o escritores</h6>{% render_field infofrom.fk_writer class="form-select"  %}
+            </div>
+          </div>
+          <div class="row m-1">
+            <h6 class="h6">Seleccione las etiquetas del libro</h6>
+            {% render_field infofrom.fk_tag class="form-select" %}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="bookid" value={{infobook.id}}>
+        <button type="submit" name="deletebookbtn" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+        <button type="submit" name="editbookbtn" class="btn btn-warning"><i class="fas fa-edit"></i> Editar</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary mb-2 arttoc"><i class="fas fa-clipboard-check"></i> OK</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--modal delete book-->
+<div class="modal fade" id="mdeletbook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-delete">
+        <form action="{% url 'libros' %}" method="post">
+         {% csrf_token %}
+         <input type="hidden" name="bookid" value={{d_book.id}}>
+        <h4 class="h4">Esta a pundo de eliminar el libro: {{d_book.title}}, Editorial: {{d_book.fk_editorial}} </h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="confirdeletebtn" class="btn btn-danger">Eliminar</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
 <h2 class="h2">{{note}}</h2>
 <!--container books-->
       <div class="container-fluid">
-          <div class="row">
-            <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_2_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Veinte mil leguas de viaje submarino</h5>
-                  <ul class="card-tex">
-                      <li>Genero: <span class="badge bg-primary">fantasia</span>
-                        <span class="badge bg-secondary">drama</span></li>
-                      <li>Autor: Julio verne</li>
-                      <li>Editorial: perro amarillo</li>
-                  </ul>
-                  <span class="badge rounded-pill bg-danger">No disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_2_La_vuelta_al_mundo_en_80_dias.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">La vuelta al mundo en 80 dias</h5>
-                  <ul class="card-text">
-                      <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-info text-dark">Comedia</span> <span class="badge bg-dark">Novela</span> </li>
-                      <li>Autor: Julio verne</li>
-                      <li>Editorial: perro espacial </li>
-                  </ul>
-                  <span class="badge rounded-pill bg-success"> disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_1_viaje_centro_de_la-tierra.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Viaje al centro de la tierra</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Julio verne </li>
-                    <li>Editorial: Planeta </li>
-                </ul>
-                <span class="badge rounded-pill bg-success"> disponible</span>
-                <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_2_viaje_centro_de_la-tierra.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Viaje al centro de la tierra</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Julio verne</li>
-                    <li>Editorial: Gato negro</li>
-                </ul>
-                <span class="badge rounded-pill bg-danger">No disponible</span>
-                  <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
-              <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
-                <img src="{% static 'images/books/portada_2_de_la_tierra_a_la_luna.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">De la tierra a la luna</h5>
-                  <ul class="card-text">
-                    <li>Genero: <span class="badge bg-warning text-dark">suspenso</span> <span class="badge bg-primary">fantasia</span></li>
-                    <li>Autor: Julio verne </li>
-                    <li>Editorial: Azteca </li>
-                </ul>
-                <span class="badge rounded-pill bg-success"> disponible</span>
-                <hr>
-                  <a href="./error.html" class="btn cbtn "><i class="fas fa-info-circle"></i> Info</a>
-                </div>
-              </div>
+        <div class="row">
+          {% for book in books %}
+          <div class="card  m-4 mb-2 mx-2" style="width: 18rem;">
+            {% if book.image %}
+            <img src="{{book.image.url}}" alt="portada {{book.title}} {{book.fk_editorial}}" class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{book.title}}</h5>
+              <ul class="card-tex">
+                  <li><h6 class="h6">Etiquetas:</h6> 
+                    {% for tag in book.fk_tag.all %}
+                      {{tag.name_tag}},
+                    {% endfor %}
+                  </li>
+                  <li><h6 class="h6">Autor:</h6> <ul>{% for writer in book.fk_writer.all %} <li>{{writer.name_writer}}</li>{% endfor %}</ul></li>
+                  <li><h6 class="h6">Editorial:</h6> {{book.fk_editorial}}</li>
+              </ul>
+              {% if book.availability %}
+              <span class="badge rounded-pill bg-success"> Disponible</span>
+              {% else %}
+              <span class="badge rounded-pill bg-danger">No dispoble</span>
+              {% endif %}
+              <hr>
+              <form form action="{% url 'libros' %}" method="get">
+                <input name="bookid" type="hidden" value={{book.id}}>
+              <button type="submit" name="infobookbtn"class="btn cbtn"><i class="fas fa-info-circle"></i> Info</button>
+            </form>
+            </div>
           </div>
-        
+          {% endfor %}
+        </div>    
       </div>
 <!-- Bootstrap Bundle with Popper javascrip-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+{% if i %}
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById("minfolibro"), {});
+    document.onreadystatechange = function () {
+    myModal.show();
+    };
+  </script>
+{% endif %}
+{% if db %}
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById("mdeletbook"), {});
+    document.onreadystatechange = function () {
+    myModal.show();
+    };
+  </script>
+{% endif %}
 </body>
 </html>

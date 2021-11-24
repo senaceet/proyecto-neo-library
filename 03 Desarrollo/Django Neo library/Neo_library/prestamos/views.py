@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.http import Http404
 
 from .forms import DocumetoForm,UserForm,Clientform,Editorialform,Writerform,tagform,Bookform
-from .models import Cliient,Useer
+from .models import Cliient,Useer,Book
 
 def index (request):
     return render(request,'index.html')
@@ -49,6 +49,7 @@ def administration (request):
     return render (request,'administracion.html')
 #books page
 def books (request):
+    libros = Book.objects.all()
     tag = tagform()
     writer = Writerform()
     editorial = Editorialform()
@@ -60,29 +61,60 @@ def books (request):
             filled_form.save()
             note = 'Etiqueta %s guardada correctamente' %(filled_form.cleaned_data['name_tag'])
             new_form = DocumetoForm()
-            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note})
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note,'books':libros})
     #save editorial
     if request.method == 'POST' and 'editorialsavebtn' in request.POST:
         filled_form = Editorialform(request.POST)
         if filled_form.is_valid():
             filled_form.save()
             note = 'editorial %s guardada correctamente' %(filled_form.cleaned_data['name_editorial'])
-            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note})
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note,'books':libros})
     #save writer
     if request.method == 'POST' and 'writersavebtn' in request.POST:
         filled_form = Writerform(request.POST)
         if filled_form.is_valid():
             filled_form.save()
             note = 'Autor(a) %s guardado correctamente' %(filled_form.cleaned_data['name_writer'])
-            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note})
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note,'books':libros})
+    #save book
     if request.method == 'POST' and 'savebookbtn1' in request.POST:
         filled_form =Bookform(request.POST, request.FILES)
         if filled_form.is_valid():
             filled_form.save()
             note = 'libro %s guardado correctamente' %(filled_form.cleaned_data['title'])
-            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note})
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note,'books':libros})
+    #show book info
+    if request.method == 'GET' and 'infobookbtn' in request.GET:
+        i = (request.GET)
+        pk = i['bookid']
+        infobook = Book.objects.filter(pk=pk).first()
+        infobform = Bookform(instance=infobook)
+        return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'books':libros,'i':i,'infofrom':infobform,'infobook':infobook})
+    # save modify book info
+    if request.method == 'POST' and 'editbookbtn' in request.POST:
+        i = (request.POST)
+        pk = i['bookid']
+        m_book = Book.objects.filter(pk=pk).first()
+        mb_form =  Bookform(instance=m_book)
+        filled_form = Bookform(request.POST,request.FILES,instance=m_book)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'libro %s modificado correctamente' %(filled_form.cleaned_data['title'])
+            return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'note':note,'books':libros})
+    # delete warning book
+    if request.method == 'POST' and 'deletebookbtn' in request.POST:
+        db = (request.POST)
+        pk = db['bookid']
+        d_book = Book.objects.filter(pk=pk).first()
+        return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'books':libros,'db':db,'d_book':d_book})
+    #confirm delete book
+    if request.method == 'POST' and 'confirdeletebtn' in request.POST:
+        db = (request.POST)
+        pk = db['bookid']
+        Book.objects.filter(pk=pk).delete()
+        return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'books':libros})
     else:    
-        return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book})
+        return render (request,'libros.html',{'etiquetaform':tag,'escritorform':writer,'editorialform':editorial,'libroform':book,'books':libros})
 def my_loans (request,Cliient_id): #teasting
     try:
         client = Cliient.objects.get(id=Cliient_id)
