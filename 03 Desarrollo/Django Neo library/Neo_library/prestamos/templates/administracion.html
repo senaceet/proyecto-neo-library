@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -47,18 +48,16 @@
             </ul>
           </div>
   </nav>
+  {{note}}
  <!--botones-->
-    <div class="container my-4">
+    <div class="container my-2">
         <div class="row">
-          <div class="col-lg-1  col-0"></div>
-          <div class="col-lg-2  col-2"><button type="button" class="btn btn-success m-2 inbon" data-bs-toggle="modal" data-bs-target="#mnuevolibro"><i class="fas fa-journal-whills icinbon"></i><hr>Nuevo libro</button></div>
-          <div class="col-lg-1  col-1"></div>
-          <div class="col-lg-2  col-2"><button type="button" class="btn btn-success m-2 inbon" data-bs-toggle="modal" data-bs-target="#mnuevousuario"><i class="fas fa-user-plus icinbon"></i><hr>Nuevo Usuario</button></div>
-          <div class="col-lg-1  col-1"></div>
-          <div class="col-lg-2  col-2"><button type="button" class="btn btn-success m-2 inbon" data-bs-toggle="modal" data-bs-target="#Mnuevoprestamo"><i class="fab fa-leanpub icinbon"></i><hr>Nuevo prestamo</button></div>
-          <div class="col-lg-1  col-1"></div>
-          <div class="col-lg-2  col-2"><button type="button" class="btn btn-success m-2 inbon"><i class="fas fa-chart-bar icinbon"></i><hr>Generar informe</button></div>
-          <div class="col-lg-1  col-0"></div>
+          <div class="col-3 d-flex justify-content-center"><button type="button" class="btn btn-success m-2 inbon" data-bs-toggle="modal" data-bs-target="#mnuevolibro"><i class="fas fa-journal-whills icinbon"></i><hr>Añadir libro</button></div>
+          <div class="col-1"></div>
+          <div class="col-3 d-flex justify-content-center"><button type="button" class="btn btn-success m-2 inbon" data-bs-toggle="modal" data-bs-target="#mnuevousuario"><i class="fas fa-user-plus icinbon"></i><hr>Añadir Usuario</button></div>
+          <div class="col-1"></div>
+          <div class="col-3 d-flex justify-content-center"><button type="button" class="btn btn-success m-2 inbon" data-bs-toggle="modal" data-bs-target="#Mnuevoprestamo"><i class="fab fa-leanpub icinbon"></i><hr>Nuevo prestamo</button></div>
+          <div class="col-1"></div>
         </div>
     </div>
 <!-- Modal N prestamo -->
@@ -70,77 +69,40 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body mlb">
+        <form action="{% url 'administration' %}" method="post">
+        {% csrf_token %}
         <div class="row m-1">
-            <div class="col p-0">
-             <input class="form-control" type="text" placeholder="ID #0000" aria-label="readonly loan id" readonly>
-            </div>
-            <div class="col">
-                <div class="form-check form-switch mt-2">
-                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"><h6 class="h6 text-white">Activo</h6></label>
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                  </div>
-            </div>
+          <div class="col">
+            <h6 class="h6 text-white bgc">fecha de prestamo:</h6>
+            {% render_field newloan.date_loan type="date" %}
+          </div>
+          <div class="col">
+            <h6 class="h6 text-white bgc">fecha de devolucion:</h6>
+            {% render_field newloan.return_date type="date" %}
+          </div>
+          <div class="col">
+            <h6 class="h6 text-white bgc">Estado del prestamo</h6>
+            {% render_field newloan.state class="form-select" %}
+          </div>
         </div>
         <div class="row m-1">
-            <div class="col">
-                <label for="start"><h6 class="h6 text-white bgc">fecha de prestamo:</h6></label>
-
-              <input type="date" id="start" name="trip-start"
-              value="2021-02-20"
-              min="2020-07-20" max="2023-12-31">
-            </div>
-            <div class="col">
-                <label for="start"><h6 class="h6 text-white bgc">fecha de devolucion:</h6></label>
-
-              <input type="date" id="start" name="trip-start"
-              value="2021-02-20"
-              min="2020-07-20" max="2023-12-31">
-            </div>
+          <h6 class="h6 text-white bgc">Libros:</h6>
+          {% render_field newloan.fk_book class="form-select" %}
         </div>
         <div class="row m-1">
-            <div class="col">
-                <select class="form-select" multiple size="3" aria-label="size 3 select example">
-                    <option selected> Libros </option>
-                    <option value="1">Libro 1</option>
-                    <option value="2">Libro 2</option>
-                    <option value="3">Libro 3</option>
-                    <option value="4">Libro 4</option>
-                    <option value="5">Libro 5</option>
-                    <option value="6">Libro 6</option>
-                    <option value="7">Libro 7</option>
-                    <option value="8">Libro 8</option>
-                    <option value="9">Libro 9</option>
-                    <option value="10">Libro 10</option>
-                  </select>
-            </div>
+          <h6 class="h6 text-white bgc">Usuario:</h6>
+          {% render_field newloan.fk_id_client class="form-select" %}
         </div>
         <div class="row m-1">
-            <div class="col">
-                <select class="form-select mt-3" aria-label="Default select example">
-                    <option selected>Usuario</option>
-                    <option value="1">usuario 1</option>
-                    <option value="2">usuario 2</option>
-                    <option value="3">usuario 3</option>
-                    <option value="4">usuario 4</option>
-                    <option value="5">usuario 5</option>
-                    <option value="6">usuario 6</option>
-                    <option value="7">usuario 7</option>
-                    <option value="8">usuario 8</option>
-                    <option value="9">usuario 9</option>
-                  </select>
-            </div>
-        </div>
-        <div class="row m-1">
-            <div class="col">
-                <label for="exampleFormControlTextarea1" class="form-label"><h6 class="h6 text-white bgc">Comentario</h6></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
+          <h6 class="h6 text-white bgc">Comentario</h6>
+          {% render_field newloan.coment  class="form-control" rows="3" %}
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary mb-2 arttoc"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" name="saveloanbtn" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>
@@ -150,68 +112,58 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content ">
       <div class="modal-header">
-        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">Nuevo usuario</h5>
+        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">Añadir usuario</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body mub">
-        <div class="row m-2">
-          <div class="col">
-              <select class="form-select mt-2" aria-label="Default select example">
-                  <option selected>Tipo De Documento</option>
-                  <option value="1">CC</option>
-                  <option value="2">CE</option>
-                  <option value="3">TI</option>
-                </select>
+        <form action="{% url 'administration' %}" method="post">
+          {% csrf_token %}
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.document_user class="form-control" placeholder="Nuemero de documento" %}
+            </div>
+            <div class="col">
+              {% render_field usuarioform.fk_type_document class="form-select" placeholder="tipo de documento" %}
+            </div>
           </div>
-          <div class="col">
-            <input type="text" class="form-control mt-2" placeholder="N° Documento*" aria-label="Documento">
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.first_name class="form-control" placeholder="Primer Nombre" %}
+            </div>
+            <div class="col">
+              {% render_field usuarioform.sec_name class="form-control" placeholder="Segundo Nombre" %}
+            </div>
           </div>
-        </div>
-        <div class="row m-2">
-          <div class="col">
-              <input type="text" class="form-control" placeholder="Primer nombre*" aria-label="primer nombre">
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.surname class="form-control" placeholder="Primer apellido" %}
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Segundo nombre" aria-label="segundo nombre">
+              {% render_field usuarioform.sec_surname class="form-control" placeholder="Segundo apellido" %}
             </div>
-        </div>
-        <div class="row m-2">
-          <div class="col">
-              <input type="text" class="form-control" placeholder="Primer Apellido*" aria-label="primer apellido">
+          </div>
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.password_ad class="form-control" placeholder="contraseña" %}
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Segundo Apellido" aria-label="segundo apellido">
+              {% render_field usuarioform.email class="form-control" placeholder="correo" %}
             </div>
-        </div>
-        <div class="row m-2">
-          <div class="col">
-              <input type="text" class="form-control" placeholder="Direccion*" aria-label="direccion">
+          </div>
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuarioform.address class="form-control" placeholder="Direccion" %}
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Telefono*" aria-label="Telefono">
+              {% render_field usuarioform.cell_phone class="form-control" placeholder="telfono" %}
             </div>
-        </div>
-        <div class="row m-2">
-          <div class="col">
-              <h6 class="h6 mt-2 white">Correo --></h6>
-            </div>
-            <div class="col">
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp " placeholder="name@example.com">
-            </div>
-        </div>
-        <div class="row m-2">
-          <div class="col">
-            <h6 class="h6 mt-2 white ">Contraseña --></h6>
-            </div>
-            <div class="col">
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-        </div>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary mb-2 bspu"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" name="saveuserbtn" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>
@@ -225,146 +177,42 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body m-bgi newbm">
-        <div class="row m-1">
-          <div class="col p-0">
-           <input class="form-control" type="text" placeholder="ID #0000" aria-label="readonly book id" readonly>
+        <form action="{% url 'administration' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row m-1">
+            <div class="col">
+              <h6 class="h6">Titulo del libro</h6>{% render_field libroform.title class="form-control" placeholder="Titulo del libro" %}
+            </div>
+            <div class="col">
+              <h6 class="h6">Disponible?</h6>{% render_field libroform.availability class="form-control"  %}
+            </div>
           </div>
-          <div class="col">
-              <div class="form-check form-switch mt-2">
-                  <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"><h6 class="h6 ">Disponible</h6></label>
-                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                </div>
+          <div class="row m-1">
+            <div class="col">
+              <h6 class="h6">Portada</h6>{% render_field libroform.image class="form-control" type="file" %}
+            </div>
+            <div class="col">
+              <h6 class="h6">Informacion del libro</h6>{% render_field libroform.Info class="form-control" rows="4" %}
+            </div>
           </div>
-      </div>
-      <div class="row m-1">
-          <input class="form-control" type="text" placeholder="Titulo" aria-label="book title">
-      </div>
-      <div class="row m-1">
-          <div class="col p-0">
-              <select class="form-select " size="3" aria-label="size 3 select example">
-                  <option selected>Autores</option>
-                  <option value="1">Autor 1</option>
-                  <option value="2">Autor 2</option>
-                  <option value="3">Autor 3</option>
-                  <option value="4">Autor 4</option>
-                  <option value="5">Autor 5</option>
-                  <option value="6">Autor 6</option>
-                  <option value="7">Autor 7</option>
-                  <option value="8">Autor 8</option>
-                  <option value="9">Autor 9</option>
-                  <option value="10">Autor 10</option>
-                </select>
+          <div class="row m-1">
+            <div class="col">
+              <h6 class="h6">Seleccione la editorial</h6>{% render_field libroform.fk_editorial class="form-control" %}
+            </div>
+            <div class="col">
+              <h6 class="h6">Seleccione el escritor o escritores</h6>{% render_field libroform.fk_writer class="form-select"  %}
+            </div>
           </div>
-          <div class="col">
-              <select class="form-select mt-3" aria-label="Default select example">
-                  <option selected>Editorial</option>
-                  <option value="1">editorial 1</option>
-                  <option value="2">editorial 2</option>
-                  <option value="3">editorial 3</option>
-                  <option value="4">editorial 4</option>
-                  <option value="5">editorial 5</option>
-                </select>
+          <div class="row m-1">
+            <h6 class="h6">Seleccione las etiquetas del libro</h6>
+            {% render_field libroform.fk_tag class="form-select" %}
           </div>
-      </div>
-      <div class="row m-1">
-          <h5 class="h5 text-center">Generos</h5>
-          <div class="col">
-              <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">genero  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                  <label class="form-check-label" for="inlineCheckbox1">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                  <label class="form-check-label" for="inlineCheckbox2">genero </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                  <label class="form-check-label" for="inlineCheckbox3">genero </label>
-                </div>
-          </div>
-      </div>
-      <div class="row m-1">
-          <div class="col">
-              <label for="exampleFormControlTextarea1" class="form-label ">Comentario</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-      </div>
-      <div class="row m-1">
-        <div class="col">
-          <label for="formFileSm" class="form-label">Imagen</label>
-          <input class="form-control form-control-sm" id="formFileSm" type="file">
-        </div>
-    </div>
-      <div class="row m-1">
-          <div class="col">
-              <input class="form-control" type="text" placeholder="barcode" aria-label="barcode" disabled>
-          </div>
-      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary mb-2 arttoc"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" name="savebookbtn" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>
@@ -372,17 +220,17 @@
 <!--widges-->
     <div class="container-fluid m-1">
     <div class="row ">
-        <div class="col-xl-3 col-lg-6">
+        <div class="col-xl-4 col-lg-6">
             <div class="card l-bg-cherry">
                 <div class="card-statistic-3 p-4">
                     <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
                     <div class="mb-4">
-                        <h5 class="card-title mb-0">Nuevos Usuarios</h5>
+                        <h5 class="card-title mb-0">Usuarios registrados</h5>
                     </div>
                     <div class="row align-items-center mb-2 d-flex">
                         <div class="col-8">
                             <h2 class="d-flex align-items-center mb-0">
-                                3,243
+                                {{n_u}}
                             </h2>
                         </div>
                         <div class="col-4 text-right">
@@ -395,7 +243,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-6">
+        <div class="col-xl-4 col-lg-6">
             <div class="card l-bg-blue-dark">
                 <div class="card-statistic-3 p-4">
                     <div class="card-icon card-icon-large"><i class="fas fa-book-reader"></i></div>
@@ -405,7 +253,7 @@
                     <div class="row align-items-center mb-2 d-flex">
                         <div class="col-8">
                             <h2 class="d-flex align-items-center mb-0">
-                                15.07k
+                                {{n_l}}
                             </h2>
                         </div>
                         <div class="col-4 text-right">
@@ -418,7 +266,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-6">
+        <div class="col-xl-4 col-lg-12">
             <div class="card l-bg-green-dark">
                 <div class="card-statistic-3 p-4">
                     <div class="card-icon card-icon-large"><i class="fas fa-archive"></i></div>
@@ -428,7 +276,7 @@
                     <div class="row align-items-center mb-2 d-flex">
                         <div class="col-8">
                             <h2 class="d-flex align-items-center mb-0">
-                                578
+                                {{n_b}}
                             </h2>
                         </div>
                         <div class="col-4 text-right">
@@ -441,29 +289,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-6">
-            <div class="card l-bg-orange-dark">
-                <div class="card-statistic-3 p-4">
-                    <div class="card-icon card-icon-large"><i class="fas fa-eye"></i></div>
-                    <div class="mb-4">
-                        <h5 class="card-title mb-0">Visitas</h5>
-                    </div>
-                    <div class="row align-items-center mb-2 d-flex">
-                        <div class="col-8">
-                            <h2 class="d-flex align-items-center mb-0">
-                                11.61k
-                            </h2>
-                        </div>
-                        <div class="col-4 text-right">
-                            <span>2.5% <i class="fa fa-arrow-up"></i></span>
-                        </div>
-                    </div>
-                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
-                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
     </div>
 <!--ultimos prestamos-->
@@ -480,41 +306,21 @@
       </tr>
     </thead>
     <tbody>
+      {% for last in last_l%}
       <tr>
-        <td>005</td>
-        <td>09/02/2021</td>
-        <td>16/02/2021</td>
-        <td>#1002</td>
-        <td>#1113</td>
+        <td>{{last.id}}</td>
+        <td>{{last.date_loan}}</td>
+        <td>{{last.return_date}}</td>
+        <td>
+          <ul>
+            {% for book in last.fk_book.all %}
+             <li>{{book.title}}</li>
+            {% endfor %}
+          </ul>
+        </td>
+        <td>{{last.fk_id_client}}</td>
       </tr>
-      <tr>
-        <td>002</td>
-        <td>02/02/2021</td>
-        <td>16/02/2021</td>
-        <td>#1453</td>
-        <td>#1031</td>
-      </tr>
-      <tr class="table-success">
-        <td>001</td>
-        <td>12/12/2020</td>
-        <td>30/12/2020</td>
-        <td>#1102</td>
-        <td>#1805</td>
-      </tr>
-      <tr class="table-danger">
-        <td>004</td>
-        <td>05/01/2021</td>
-        <td>25/01/2021</td>
-        <td>#1723</td>
-        <td>#1312</td>
-      </tr>
-      <tr class="table-warning">
-        <td>003</td>
-        <td>06/02/2021</td>
-        <td>13/02/2021</td>
-        <td>#1132</td>
-        <td>#1523</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>

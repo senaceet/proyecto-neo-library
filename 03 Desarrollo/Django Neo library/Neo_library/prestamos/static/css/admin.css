@@ -141,3 +141,6 @@ color: rgb(255, 255, 255);
 .newbm{
     background-image: url('../images/bgs/bg_n_book_paper.jpg');
 }
+.ifoport{
+    max-width: 230px;
+}

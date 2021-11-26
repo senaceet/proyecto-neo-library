@@ -44,9 +44,45 @@ def logout_view (request):
     logout (request)
     messages.success(request,'sesion finalizada')
     return redirect('log_admin')
-
+#administracion page
 def administration (request):
-    return render (request,'administracion.html')
+    n_loan = Loanform()
+    book = Bookform()
+    n_user = UserForm()
+    #contadores
+    #contador de usuario
+    number_users = Cliient.objects.count()
+    #contador libros
+    number_books = Book.objects.count()
+    #contador de prestamos
+    number_loans = Loan.objects.count()
+    #last loans
+    last_loans=Loan.objects.all().order_by('-id')[:10]
+    #save loan
+    if request.method == 'POST' and 'saveloanbtn' in request.POST:
+        filled_form =Loanform(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'prestamo con fecha de devolucion %s guardado correctamente' %(filled_form.cleaned_data['return_date'])
+            return render (request,'administracion.html',{'newloan':n_loan,'note':note,'libroform':book,'usuarioform':n_user,'n_u':number_users,'n_b':number_books,'n_l':number_loans,'last_l':last_loans,})
+    #save user
+    if request.method == 'POST' and 'saveuserbtn' in request.POST:
+       filled_form =UserForm(request.POST)
+       if filled_form.is_valid():
+            created_user = filled_form.save()
+            created_userpk = created_user.id
+            client = Clientform({'fk_id_user':created_userpk})
+            client.save() 
+            note = 'Usuario: %s %s - %s, guardado exitosamente' %(filled_form.cleaned_data['first_name'],filled_form.cleaned_data['surname'],filled_form.cleaned_data['document_user'],)
+            return render (request,'administracion.html',{'newloan':n_loan,'note':note,'libroform':book,'usuarioform':n_user,'n_u':number_users,'n_b':number_books,'n_l':number_loans,'last_l':last_loans,})
+    #save book
+    if request.method == 'POST' and 'savebookbtn' in request.POST:
+        filled_form =Bookform(request.POST, request.FILES)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'libro %s guardado correctamente' %(filled_form.cleaned_data['title'])
+            return render (request,'administracion.html',{'newloan':n_loan,'note':note,'libroform':book,'usuarioform':n_user,'n_u':number_users,'n_b':number_books,'n_l':number_loans,'last_l':last_loans,})
+    return render (request,'administracion.html',{'newloan':n_loan,'libroform':book,'usuarioform':n_user,'n_u':number_users,'n_b':number_books,'n_l':number_loans,'last_l':last_loans,})
 #books page
 def books (request):
     libros = Book.objects.all()
