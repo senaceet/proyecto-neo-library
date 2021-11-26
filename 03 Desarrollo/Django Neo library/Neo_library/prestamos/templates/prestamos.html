@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,13 +25,13 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./administracion.html"><h5 class="h5">Inicio</h5></a>
+            <a class="nav-link active" aria-current="page" href="{% url 'administration' %}"><h5 class="h5">Inicio</h5></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./libros.html"><h5 class="h5">Libros</h5></a>
+            <a class="nav-link" href="{% url 'libros' %}"><h5 class="h5">Libros</h5></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./usuarios.html"><h5 class="h5">Usuarios</h5></i></a>
+            <a class="nav-link" href="{% url 'usuarios' %}"><h5 class="h5">Usuarios</h5></i></a>
           </li>
           <li>
             <form class="d-flex mx-lg-4 ">
@@ -43,7 +44,7 @@
       </div>
     </div>
   </nav>
-<!-- Modal -->
+<!-- Modal nuevo prestamo -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content ">
@@ -52,277 +53,158 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <form action="{% url 'prestamos' %}" method="post">
+          {% csrf_token %}
         <div class="row m-1">
-            <div class="col p-0">
-             <input class="form-control" type="text" placeholder="ID #0000" aria-label="readonly loan id" readonly>
-            </div>
-            <div class="col">
-                <div class="form-check form-switch mt-2">
-                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"><h6 class="h6 text-white">Activo</h6></label>
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                  </div>
-            </div>
+          <div class="col">
+            <h6 class="h6 text-white bgc">fecha de prestamo:</h6>
+            {% render_field newloan.date_loan type="date" %}
+          </div>
+          <div class="col">
+            <h6 class="h6 text-white bgc">fecha de devolucion:</h6>
+            {% render_field newloan.return_date type="date" %}
+          </div>
+          <div class="col">
+            <h6 class="h6 text-white bgc">Estado del prestamo</h6>
+            {% render_field newloan.state class="form-select" %}
+          </div>
         </div>
         <div class="row m-1">
-            <div class="col">
-                <label for="start"><h6 class="h6 text-white bgc">fecha de prestamo:</h6></label>
-
-              <input type="date" id="start" name="trip-start"
-              value="2021-02-20"
-              min="2020-07-20" max="2023-12-31">
-            </div>
-            <div class="col">
-                <label for="start"><h6 class="h6 text-white bgc">fecha de devolucion:</h6></label>
-
-              <input type="date" id="start" name="trip-start"
-              value="2021-02-20"
-              min="2020-07-20" max="2023-12-31">
-            </div>
+          <h6 class="h6 text-white bgc">Libros:</h6>
+          {% render_field newloan.fk_book class="form-select" %}
         </div>
         <div class="row m-1">
-            <div class="col">
-                <select class="form-select" multiple size="3" aria-label="size 3 select example">
-                    <option selected> Libros </option>
-                    <option value="1">Libro 1</option>
-                    <option value="2">Libro 2</option>
-                    <option value="3">Libro 3</option>
-                    <option value="4">Libro 4</option>
-                    <option value="5">Libro 5</option>
-                    <option value="6">Libro 6</option>
-                    <option value="7">Libro 7</option>
-                    <option value="8">Libro 8</option>
-                    <option value="9">Libro 9</option>
-                    <option value="10">Libro 10</option>
-                  </select>
-            </div>
+          <h6 class="h6 text-white bgc">Usuario:</h6>
+          {% render_field newloan.fk_id_client class="form-select" %}
         </div>
         <div class="row m-1">
-            <div class="col">
-                <select class="form-select mt-3" aria-label="Default select example">
-                    <option selected>Usuario</option>
-                    <option value="1">usuario 1</option>
-                    <option value="2">usuario 2</option>
-                    <option value="3">usuario 3</option>
-                    <option value="4">usuario 4</option>
-                    <option value="5">usuario 5</option>
-                    <option value="6">usuario 6</option>
-                    <option value="7">usuario 7</option>
-                    <option value="8">usuario 8</option>
-                    <option value="9">usuario 9</option>
-                  </select>
-            </div>
-        </div>
-        <div class="row m-1">
-            <div class="col">
-                <label for="exampleFormControlTextarea1" class="form-label"><h6 class="h6 text-white bgc">Comentario</h6></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
+          <h6 class="h6 text-white bgc">Comentario</h6>
+          {% render_field newloan.coment  class="form-control" rows="3" %}
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-trash"></i> Cancelar</button>
         <button type="button" class="btn btn-primary mb-2 arttoc"><i class="fas fa-id-badge"></i> Guardar y añadir otro</button>
-        <button type="button" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+        <button type="submit" name="loansavebtn" class="btn btn-success mb-2"><i class="fas fa-save"></i> Guardar</button>
+      </form>
       </div>
     </div>
   </div>
 </div> 
+<!--modal info loan-->
+<div class="modal fade" id="infoloanmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title h3 text-center" id="staticBackdropLabel">prestamo # {{infoloan.id}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'prestamos' %}" method="post">
+          {% csrf_token %}
+        <div class="row m-1">
+          <div class="col">
+            <h6 class="h6 text-white bgc">fecha de prestamo:</h6>
+            {% render_field ifoform.date_loan  %}
+          </div>
+          <div class="col">
+            <h6 class="h6 text-white bgc">fecha de devolucion:</h6>
+            {% render_field ifoform.return_date  %}
+          </div>
+          <div class="col">
+            <h6 class="h6 text-white bgc">Estado del prestamo</h6>
+            {% render_field ifoform.state class="form-select" %}
+          </div>
+        </div>
+        <div class="row m-1">
+          <h6 class="h6 text-white bgc">Libros:</h6>
+          {% render_field ifoform.fk_book class="form-select" %}
+        </div>
+        <div class="row m-1">
+          <h6 class="h6 text-white bgc">Usuario:</h6>
+          {% render_field ifoform.fk_id_client class="form-select" %}
+        </div>
+        <div class="row m-1">
+          <h6 class="h6 text-white bgc">Comentario</h6>
+          {% render_field ifoform.coment  class="form-control" rows="3" %}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden"  name="loanid" value={{infoloan.id}}>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> Ok</button>
+        <button type="submit" name="savemodloanbtn" class="btn btn-primary mb-2 arttoc"><i class="fas fa-save"></i> Guardar </button>
+        <button type="submit" name="deleteloanbtn" class="btn btn-danger mb-2"><i class="fas fa-trash"></i> Eliminar</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div> 
+<!--modal delete loan-->
+<div class="modal fade" id="mdeleteloan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-delete">
+        <form action="{% url 'prestamos' %}" method="post">
+         {% csrf_token %}
+         <input type="hidden" name="bookid" value={{d_loan.id}}>
+        <h4 class="h4">Esta a pundo de eliminar el prestamo:{{d_loan.id}} </h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="confirdeletebtn" class="btn btn-danger">Eliminar</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{note}}
   <div class="container-fluid mt-2">
     <table class="table">
-        <thead>
-          <tr class="table-dark">
-            <th scope="col">ID</th>
-            <th scope="col">USUARIO</th>
-            <th scope="col">LIBRO</th>
-            <th scope="col">FECHA DE PRESTAMO</th>
-            <th scope="col">FECHA DE DEVOLUCION</th>
-            <th scope="col">ESTADO</th>
-            <th scope="col">OPCIONES</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>005</td>
-                <td>#1002</td>
-                <td>#1113</td>
-                <td>09/02/2021</td>
-                <td>16/02/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr>
-                <td>002</td>
-                <td>#1453</td>
-                <td>#1031</td>
-                <td>02/02/2021</td>
-                <td>16/02/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr class="table-success">
-                <td>001</td>
-                <td>#1102</td>
-                <td>#1805</td>
-                <td>12/12/2020</td>
-                <td>30/12/2020</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr class="table-danger">
-                <td>004</td>
-                <td>#1723</td>
-                <td>#1312</td>
-                <td>05/01/2021</td>
-                <td>25/01/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr class="table-warning">
-                <td>003</td>
-                <td>#1132</td>
-                <td>#1523</td>
-                <td>06/02/2021</td>
-                <td>13/02/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr>
-                <td>005</td>
-                <td>#1002</td>
-                <td>#1113</td>
-                <td>09/02/2021</td>
-                <td>16/02/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr>
-                <td>002</td>
-                <td>#1453</td>
-                <td>#1031</td>
-                <td>02/02/2021</td>
-                <td>16/02/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr class="table-success">
-                <td>001</td>
-                <td>#1102</td>
-                <td>#1805</td>
-                <td>12/12/2020</td>
-                <td>30/12/2020</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr class="table-danger">
-                <td>004</td>
-                <td>#1723</td>
-                <td>#1312</td>
-                <td>05/01/2021</td>
-                <td>25/01/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr class="table-warning">
-                <td>003</td>
-                <td>#1132</td>
-                <td>#1523</td>
-                <td>06/02/2021</td>
-                <td>13/02/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr class="table-danger">
-                <td>004</td>
-                <td>#1723</td>
-                <td>#1312</td>
-                <td>05/01/2021</td>
-                <td>25/01/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-              <tr class="table-danger">
-                <td>004</td>
-                <td>#1723</td>
-                <td>#1312</td>
-                <td>05/01/2021</td>
-                <td>25/01/2021</td>
-                <td><div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                  </div></td>
-                <td><div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success"><i class="far fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                  </div></td>
-              </tr>
-        </tbody>
-      </table>
+      <thead>
+        <tr class="table-dark">
+          <th scope="col">ID</th>
+          <th scope="col">USUARIO</th>
+          <th scope="col">LIBRO(S)</th>
+          <th scope="col">FECHA DE PRESTAMO</th>
+          <th scope="col">FECHA DE DEVOLUCION</th>
+          <th scope="col">ESTADO</th>
+          <th scope="col">OPCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for loan in loans %}
+          <tr>
+              <td>{{loan.id}}</td>
+              <td>{{loan.fk_id_client}}</td>
+              <td>
+                <ul>
+                  {% for book in loan.fk_book.all %}
+                   <li>{{book.title}}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td>{{loan.date_loan}}</td>
+              <td>{{loan.return_date}}</td>
+              <td>{{loan.state}}</td>
+              <td><div class="btn-group" role="group" aria-label="Basic example">
+                <form action="{% url 'prestamos' %}" method="get">
+                  <input type="hidden"  name="loanid" value={{loan.id}}>
+                  <button type="submit" name="smloanbtn" class="btn btn-warning lgbntse m-1"><i class="far fa-eye"></i><i class="fas fa-pen"></i></button>
+                </form>
+                <form action="{% url 'prestamos' %}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden"  name="loanid" value={{loan.id}}>
+                  <button type="submit" name="deleteloanbtn" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i></button>
+                </form>
+                </div></td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group me-2" role="group" aria-label="First group">
           <button type="button" class="btn btn-dark">1</button>
@@ -333,6 +215,22 @@
       </div>
   </div>
 <!-- Bootstrap Bundle with Popper javascrip-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+{% if i %}
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById("infoloanmodal"), {});
+    document.onreadystatechange = function () {
+    myModal.show();
+    };
+  </script>
+{% endif %} 
+{% if dl %}
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById("mdeleteloan"), {});
+    document.onreadystatechange = function () {
+    myModal.show();
+    };
+  </script>
+{% endif %} 
 </body>
 </html>

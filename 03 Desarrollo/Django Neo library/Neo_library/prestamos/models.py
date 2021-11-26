@@ -105,7 +105,7 @@ class Cliient(models.Model):
 
 class Loan(models.Model):
     STATE_CHOISES = (('A','Activo'),('F', 'Finalizado'),('R','Retrazo'))
-    date_loan = models.DateTimeField(auto_now=True,verbose_name='Fecha de préstamo')
+    date_loan = models.DateField(verbose_name='Fecha de préstamo')
     return_date = models.DateField(verbose_name='Fecha de devolucion')
     state = models.CharField(max_length=12,verbose_name='Estado',choices=STATE_CHOISES,null=True)
     coment = models.TextField(blank=True, null=True,verbose_name='Comentario')

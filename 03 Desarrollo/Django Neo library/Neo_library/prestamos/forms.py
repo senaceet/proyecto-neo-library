@@ -1,5 +1,5 @@
 from django import forms
-from .models import DocumentType,Useer,Cliient,Editorial,Writer,tag,Book
+from .models import DocumentType,Useer,Cliient,Editorial,Writer,tag,Book,Loan
 
 class  DocumetoForm(forms.ModelForm):
     class Meta:
@@ -36,3 +36,8 @@ class Bookform(forms.ModelForm):
     class Meta:
         model = Book
         exclude = ['barcode']
+
+class Loanform(forms.ModelForm):
+    class Meta:
+        model = Loan
+        fields = '__all__'

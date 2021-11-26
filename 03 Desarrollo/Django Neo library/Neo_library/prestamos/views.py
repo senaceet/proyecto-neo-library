@@ -6,8 +6,8 @@ from django.contrib.auth import logout
 from django.contrib import messages
 from django.http import Http404
 
-from .forms import DocumetoForm,UserForm,Clientform,Editorialform,Writerform,tagform,Bookform
-from .models import Cliient,Useer,Book
+from .forms import DocumetoForm,UserForm,Clientform,Editorialform,Writerform,tagform,Bookform,Loanform
+from .models import Cliient,Useer,Book,Loan
 
 def index (request):
     return render(request,'index.html')
@@ -121,8 +121,48 @@ def my_loans (request,Cliient_id): #teasting
     except Cliient.DoesNotExist:
         raise Http404('client not found')
     return render (request,'mis_prestamos.html',{'client':client,})
+# loans page
 def loans (request):
-    return  render (request,'prestamos.html')
+    prestamos=Loan.objects.all
+    n_loan = Loanform()
+    #save loan
+    if request.method == 'POST' and 'loansavebtn' in request.POST:
+        filled_form =Loanform(request.POST)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'prestamo con fecha de devolucion %s guardado correctamente' %(filled_form.cleaned_data['return_date'])
+        return  render (request,'prestamos.html',{'newloan':n_loan,'note':note,'loans':prestamos})
+    #show info loan
+    if request.method == 'GET' and 'smloanbtn' in request.GET:
+        i = (request.GET)
+        pk = i['loanid']
+        infoloan= Loan.objects.filter(pk=pk).first()
+        infoloanform = Loanform(instance=infoloan) 
+        return  render (request,'prestamos.html',{'newloan':n_loan,'loans':prestamos,'infoloan':infoloan,'ifoform':infoloanform,'i':i})
+    # save modify book loan
+    if request.method == 'POST' and 'savemodloanbtn' in request.POST:
+        i = (request.POST)
+        pk = i['loanid']
+        m_loan = Loan.objects.filter(pk=pk).first()
+        ml_form =  Loanform(instance=m_loan)
+        filled_form = Loanform(request.POST,instance=m_loan)
+        if filled_form.is_valid():
+            filled_form.save()
+            note = 'prestamo modificado correctamente'
+            return  render (request,'prestamos.html',{'newloan':n_loan,'loans':prestamos,'note':note})
+    # delete warning loan
+    if request.method == 'POST' and 'deleteloanbtn' in request.POST:
+        dl = (request.POST)
+        pk = dl['loanid']
+        d_loan = Loan.objects.filter(pk=pk).first()
+        return  render (request,'prestamos.html',{'newloan':n_loan,'loans':prestamos,'dl':dl,'d_loan':d_loan})
+    # delete confirm loan
+    if request.method == 'POST' and 'confirdeletebtn' in request.POST:
+        dl = (request.POST)
+        pk = dl['bookid']
+        Loan.objects.filter(pk=pk).delete()
+        return  render (request,'prestamos.html',{'newloan':n_loan,'loans':prestamos})
+    return  render (request,'prestamos.html',{'newloan':n_loan,'loans':prestamos})
 #users page
 def users (request):
     clients = Cliient.objects

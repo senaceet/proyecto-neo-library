@@ -37,3 +37,6 @@ color: white;
 .modal-body {
     background-image: url('../images/bgs/bg_n_loan_tree.jpg');
  }
+.lgbntse{
+    background: linear-gradient(to right,green,rgb(255, 196, 0));
+}
