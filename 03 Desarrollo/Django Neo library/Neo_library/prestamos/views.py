@@ -269,6 +269,8 @@ def users (request):
 def booksinfo (request,Book_id):
     try:
         book = Book.objects.get(id=Book_id)
+        releted_books_autor = Book.objects.filter(fk_writer__in=book.fk_writer.all()).exclude(pk=book.pk)[:3]
+        releted_books_tag = Book.objects.filter(fk_tag__in=book.fk_tag.all()).exclude(pk=book.pk)[:3]
     except Cliient.DoesNotExist:
         raise Http404('libro no encontrado')
-    return render (request,'infolibro.html',{'book':book,})
+    return render (request,'infolibro.html',{'book':book,'ra_books':releted_books_autor,'rt_books':releted_books_tag,})

@@ -22,7 +22,7 @@
             <img src="https://www.freeiconspng.com/thumbs/vaporwave-png/vaporwave-keyboard-png-8.png" alt="user"  class="bookid"> 
             <h1 class="h1 letter80s">{{book.title}}</h1>
             <div>
-                <a href="./index.html"><i class=" iconsp fas fa-home fa-2x navbotts"></i></a>
+                <a href="{% url 'index' %}"><i class=" iconsp fas fa-home fa-2x navbotts"></i></a>
                 <a href=""><i class=" iconsp fas fa-question fa-2x navbotts"></i></a>
             </div>
           </div>
@@ -76,28 +76,20 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row mx-4 carurowcol">
+              {% for book in ra_books %}
               <div class="col carurowcol">
-                <img src="{% static 'images/books/portada_1_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="caruselp d-block w-100" alt="...">
+                <a href="{% url 'infolibro' book.id %}"><img src="{{book.image.url}}" class="caruselp d-block w-100" alt="..."></a>
               </div>
-              <div class="col carurowcol">
-                <img src="{% static 'images/books/portada_2_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="caruselp d-block w-100" alt="...">
-              </div>
-              <div class="col carurowcol">
-                <img src="{% static 'images/books/portada_1_La_vuelta_al_mundo_en_80_dias.jpg' %}" class="caruselp d-block w-100" alt="...">
-              </div>
+              {% endfor %}
             </div>
           </div>
           <div class="carousel-item">
             <div class="row mx-4 carurowcol">
+              {% for book in rt_books %}
               <div class="col carurowcol">
-                <img src="{% static 'images/books/portada_3_de_la_tierra_a_la_luna.jpg' %}" class="caruselp d-block w-100" alt="...">
+               <a href="{% url 'infolibro' book.id %}"> <img src="{{book.image.url}}" class="caruselp d-block w-100" alt="..."></a>
               </div>
-              <div class="col carurowcol">
-                <img src="{% static 'images/books/portada_3_viaje_centro_de_la-tierra.jpg' %}" class="caruselp d-block w-100" alt="...">
-              </div>
-              <div class="col carurowcol">
-                <img src="{% static 'images/books/portada_la_luna_de_pluton.jpg' %}" class="caruselp d-block w-100" alt="...">
-              </div>
+              {% endfor %}
             </div>
           </div>
         </div>
