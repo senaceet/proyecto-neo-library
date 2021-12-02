@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,13 +21,13 @@
         <nav class="navbar retro">
           <div class="container-fluid retro">
             <h1 class="h1 letter"><img src="https://i.pinimg.com/originals/5f/58/b6/5f58b675f469bcdb420420d1be901a76.png" alt="user"  class="usuarioi"> {{client.fk_id_user.first_name}} {{client.fk_id_user.surname}}</h1><!--mejorable?-->
-            <a href="./index.html"><i class=" iconsp fas fa-home fa-2x"></i></a>
+            <a href="{% url 'index' %}"><i class=" iconsp fas fa-home fa-2x"></i></a>
             <a href=""><i class=" iconsp fas fa-question fa-2x"></i></a>
           </div>
         </nav>
     </header>
     <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="infoloan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content ">
       <div class="modal-header">
@@ -35,69 +36,34 @@
       </div>
       <div class="modal-body">
         <div class="row m-1">
-            <div class="col p-0">
-             <input class="form-control" type="text" placeholder="ID #0000" aria-label="readonly loan id" readonly>
-            </div>
-            <div class="col">
-                <div class="form-check form-switch mt-2">
-                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled"><h6 class="h6 text-white">Activo</h6></label>
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                  </div>
-            </div>
+          {% render_field ifoform.state|attr:"disabled"|attr:"class=form-select" %}
         </div>
         <div class="row m-1">
             <div class="col">
-                <label for="start" ><h6 class="h6 text-white bgc">fecha de prestamo:</h6></label>
-
-              <input type="date" id="start" name="trip-start" disabled readonly
-              value="2021-02-20"
-              min="2020-07-20" max="2023-12-31">
+              <label for="start" ><h6 class="h6 text-white bgc">fecha de prestamo:</h6></label>
+             {% render_field ifoform.date_loan|attr:"disabled"|attr:"type=date"  %}
             </div>
             <div class="col">
                 <label for="start" ><h6 class="h6 text-white bgc">fecha de devolucion:</h6></label>
-
-              <input type="date" id="start" name="trip-start" disabled readonly
-              value="2021-02-20"
-              min="2020-07-20" max="2023-12-31">
+                {% render_field ifoform.return_date|attr:"disabled"|attr:"type=date"  %}
             </div>
         </div>
         <div class="row m-1">
             <div class="col">
-                <select class="form-select" multiple size="3" aria-label="size 3 select example" placeholder="" disabled readonly>
-                    <option selected> Libros </option>
-                    <option value="1">Libro 1</option>
-                    <option value="2">Libro 2</option>
-                    <option value="3">Libro 3</option>
-                    <option value="4">Libro 4</option>
-                    <option value="5">Libro 5</option>
-                    <option value="6">Libro 6</option>
-                    <option value="7">Libro 7</option>
-                    <option value="8">Libro 8</option>
-                    <option value="9">Libro 9</option>
-                    <option value="10">Libro 10</option>
-                  </select>
+              <label for="exampleFormControlTextarea1" class="form-label"><h6 class="h6 text-white bgc">Libro(s)</h6></label>
+              {% render_field ifoform.fk_book|attr:"disabled"|attr:"class=form-select" %}
             </div>
         </div>
         <div class="row m-1">
             <div class="col">
-                <select class="form-select mt-3" aria-label="Default select example placeholder=" Disabled readonly >
-                    <option selected>Usuario</option>
-                    <option value="1">usuario 1</option>
-                    <option value="2">usuario 2</option>
-                    <option value="3">usuario 3</option>
-                    <option value="4">usuario 4</option>
-                    <option value="5">usuario 5</option>
-                    <option value="6">usuario 6</option>
-                    <option value="7">usuario 7</option>
-                    <option value="8">usuario 8</option>
-                    <option value="9">usuario 9</option>
-                  </select>
+              <label for="exampleFormControlTextarea1" class="form-label"><h6 class="h6 text-white bgc">Usuario</h6></label>
+              {% render_field ifoform.fk_id_client|attr:"disabled"|attr:"class=form-select" %}
             </div>
         </div>
         <div class="row m-1">
             <div class="col">
                 <label for="exampleFormControlTextarea1" class="form-label"><h6 class="h6 text-white bgc">Comentario</h6></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" disabled readonly rows="3"></textarea>
+                {% render_field ifoform.coment|attr:"disabled"|attr:"class=form-control" rows=3 %}
             </div>
         </div>
       </div>
@@ -109,7 +75,8 @@
   </div>
 </div> 
     <div class="container-fluid px-3">
-        <div><h2 class="h3 neon_text">Ultimos prestamos {{client.id}}</h2></div>
+        <div><h2 class="h3 neon_text">Ultimos prestamos </h2></div>
+        
         <table class="table">
           <thead>
             <tr class="table-dak tabpres">
@@ -121,45 +88,38 @@
             </tr>
           </thead>
           <tbody class="tabpres">
+            {% for loan in c_loans %}
             <tr>
-              <td>005</td>
-              <td>09/02/2021</td>
-              <td>16/02/2021</td>
-              <td>#1002</td>
-              <td><i  data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="far fa-eye ieye"></i></td>
+              <td>{{loan.id}}</td>
+              <td>{{loan.date_loan}}</td>
+              <td>{{loan.return_date}}</td>
+              <td><ul>
+                {% for book in loan.fk_book.all %}
+                 <li>{{book.title}}</li>
+                {% endfor %}
+              </ul></td>
+              <td>
+                <form action="">
+                 <input type="hidden"  name="loanid" value={{loan.id}}>
+                 <button type="submit" name="smloanbtn" class="btn">
+                <i class="far fa-eye ieye"></i>
+                </button>
+              </form>
+              </td>
             </tr>
-            <tr>
-              <td>002</td>
-              <td>02/02/2021</td>
-              <td>16/02/2021</td>
-              <td>#1453</td>
-              <td><i class="far fa-eye ieye"></i></td>
-            </tr>
-            <tr>
-              <td>001</td>
-              <td>12/12/2020</td>
-              <td>30/12/2020</td>
-              <td>#1102</td>
-              <td><i class="far fa-eye ieye"></i></td>
-            </tr>
-            <tr>
-              <td>004</td>
-              <td>05/01/2021</td>
-              <td>25/01/2021</td>
-              <td>#1723</td>
-              <td><i class="far fa-eye ieye"></i></td>
-            </tr>
-            <tr>
-              <td>003</td>
-              <td>06/02/2021</td>
-              <td>13/02/2021</td>
-              <td>#1132</td>
-              <td><i class="far fa-eye ieye"></i></td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
 <!-- Bootstrap Bundle with Popper javascrip-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+{% if i %}
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById("infoloan"), {});
+    document.onreadystatechange = function () {
+    myModal.show();
+    };
+  </script>
+{% endif %} 
 </body>
 </html>

@@ -154,9 +154,17 @@ def books (request):
 def my_loans (request,Cliient_id): #teasting
     try:
         client = Cliient.objects.get(id=Cliient_id)
+        c_loans = Loan.objects.filter(fk_id_client=client.pk)[:7]
+        #show info loan
+        if request.method == 'GET' and 'smloanbtn' in request.GET:
+            i = (request.GET)
+            pk = i['loanid']
+            infoloan= Loan.objects.filter(pk=pk).first()
+            infoloanform = Loanform(instance=infoloan)
+            return render (request,'mis_prestamos.html',{'client':client,'c_loans':c_loans,'infoloan':infoloan,'ifoform':infoloanform,'i':i})
     except Cliient.DoesNotExist:
         raise Http404('client not found')
-    return render (request,'mis_prestamos.html',{'client':client,})
+    return render (request,'mis_prestamos.html',{'client':client,'c_loans':c_loans,})
 # loans page
 def loans (request):
     prestamos=Loan.objects.all
@@ -266,6 +274,7 @@ def users (request):
         form1 = DocumetoForm()
         form2 =UserForm()
         return render (request,'usuarios.html', {'clients':clients,'documentoform':form1,'usuarioform':form2,})
+#info book page
 def booksinfo (request,Book_id):
     try:
         book = Book.objects.get(id=Book_id)
