@@ -266,5 +266,9 @@ def users (request):
         form1 = DocumetoForm()
         form2 =UserForm()
         return render (request,'usuarios.html', {'clients':clients,'documentoform':form1,'usuarioform':form2,})
-def booksinfo (request):
-    return render (request,'infolibro.html')
+def booksinfo (request,Book_id):
+    try:
+        book = Book.objects.get(id=Book_id)
+    except Cliient.DoesNotExist:
+        raise Http404('libro no encontrado')
+    return render (request,'infolibro.html',{'book':book,})

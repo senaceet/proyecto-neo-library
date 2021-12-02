@@ -18,7 +18,7 @@ urlpatterns = [
     path('users',views.users,name='usuarios'), # probando
     path('books',views.books,name='libros'),
     path('logout/',views.logout_view,name='logout'),
-    path('infolibro/',views.booksinfo,name='infolibro'),
+    path('infolibro/book/<int:Book_id>',views.booksinfo,name='infolibro'),
 ]
 
 if settings.DEBUG:

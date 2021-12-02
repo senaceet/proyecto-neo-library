@@ -20,7 +20,7 @@
         <nav class="navbar navback">
           <div class="container-fluid">
             <img src="https://www.freeiconspng.com/thumbs/vaporwave-png/vaporwave-keyboard-png-8.png" alt="user"  class="bookid"> 
-            <h1 class="h1 letter80s">DE LA TIERRA A LA LUNA</h1>
+            <h1 class="h1 letter80s">{{book.title}}</h1>
             <div>
                 <a href="./index.html"><i class=" iconsp fas fa-home fa-2x navbotts"></i></a>
                 <a href=""><i class=" iconsp fas fa-question fa-2x navbotts"></i></a>
@@ -30,21 +30,25 @@
     </header>
     <div class="row   mt-4 m-2">
       <div class="col-lg-2">
-        <div class=""><img src="{% static 'images/books/portada_1_de_la_tierra_a_la_luna.jpg' %}" alt="" class="portlibro "></div>
+        <div class=""><img src="{{book.image.url}}" alt="" class="portlibro "></div>
       </div>
       <div class="col-lg-7">
         <div class="binfo m-4">
-          <h5>Genero:</h5>
-          <span class="badge bg-success">Aventura</span> <span class="badge bg-primary">fantasia</span>
+          <h5>Etiquetas:</h5>
+          {% for tag in book.fk_tag.all %}
+            {{tag.name_tag}},
+          {% endfor %}
           <h5>Autor:</h5>
-          Julio Verne
+          <ul>{% for writer in book.fk_writer.all %} <li>{{writer.name_writer}}</li>{% endfor %}</ul>
           <h5>Editorial:</h5>
-          Gato azul
+          {{book.fk_editorial}}
           <br>
-          <p>De la Tierra a la Luna es una novela «científica» y «satírica» del escritor Julio Verne, publicada en el "Journal des débats politiques et littéraires" desde el 14 de septiembre hasta el 14 de octubre de 1865, y como un solo volumen el 25 de octubre de ese mismo año.
+          <p>
+            {{book.Info}}
           </p>
         </div>
       </div>
+      {% if book.availability %}
       <div class="col">
         <div class="singon">
           <h1 class="lettersingon">DIS<span id="offset">PONI</span>BLE</h1>
@@ -54,6 +58,17 @@
           <h1 class="lettersingoff">NO DISPONIBLE</h1>
         </div>
       </div>
+      {% else %}
+      <div class="col">
+        <div class="singoff">
+          <h1 class="lettersingoff">DISPONIBLE</h1>
+        </div>
+        <br></br>
+        <div class="singon">
+          <h1 class="lettersingon">NO D<span id="offset">ISPON</span>IBLE</h1>
+        </div>
+      </div>
+      {% endif %}
     </div>
     <div class="row m-3">
       <h3 class="h3 titlerb">Libros relacionados</h3>
