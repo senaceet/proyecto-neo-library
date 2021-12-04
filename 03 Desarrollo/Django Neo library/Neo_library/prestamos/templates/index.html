@@ -100,39 +100,17 @@
 </div>
 <!--book cards-->
 <div class="container mt-2 ">
-  <div class="row">
+<div class="row">
+  {% for book in books %}
   <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_1_de_la_tierra_a_la_luna.jpg' %}" class="card-img-top" alt="...">
+    <img src="{{book.image.url}}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">De la tierra a la luna</h5>
-      <p class="card-text">De la Tierra a la Luna es una novela «científica» y «satírica» del escritor Julio Verne.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
+      <h5 class="card-title">{{book.title}}</h5>
+      <p class="card-text">{{book.Info}}</p>
+      <a href="{% url 'infolibro' book.id %}" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
     </div>
   </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_1_La_vuelta_al_mundo_en_80_dias.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">La vuelta al mundo en 80 dias</h5>
-      <p class="card-text">La vuelta al mundo en ochenta días es una novela del escritor francés Julio Verne</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_1_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Veinte mil leguas de viaje submarino</h5>
-      <p class="card-text">Veinte mil leguas de viaje submarino es una de las obras literarias más conocidas del escritor francés Julio Verne.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src=" {% static 'images/books/portada_Desayuno_con_particulas.jpg' %} " class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Desayuno con particulas</h5>
-      <p class="card-text">"Tienes en las manos un ensayo sobre física cuántica, así es. Un momento, por favor, ¡espera! No dejes que eso te asuste y sueltes el libro de golpe".</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
+  {% endfor %}
 </div>
 <div class="row">
   <div class="card m-4 mb-2 mx-3" style="width: 18rem;">

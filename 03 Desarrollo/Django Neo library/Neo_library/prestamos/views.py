@@ -10,7 +10,8 @@ from .forms import DocumetoForm,UserForm,Clientform,Editorialform,Writerform,tag
 from .models import Cliient,Useer,Book,Loan
 
 def index (request):
-    return render(request,'index.html')
+    books=Book.objects.all()
+    return render(request,'index.html',{'books':books})
 def log_admin (request):
     if request.method == 'POST':
         username = request.POST.get('username')
