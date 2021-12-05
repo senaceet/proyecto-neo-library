@@ -1,4 +1,5 @@
 from django.contrib.admin.options import VERTICAL
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.fields import CharField
 from django.db.models.fields.files import ImageField
@@ -45,14 +46,9 @@ class tag(models.Model):
         verbose_name = 'Etiquta'
 
 class Useer(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="Usuario",default=6)
     document_user = models.CharField(max_length=25,verbose_name='Numero de documento')
     fk_type_document = models.ForeignKey(DocumentType,on_delete=models.CASCADE,verbose_name="Tipo de Documento")
-    first_name = models.CharField(max_length=15,verbose_name='Primer Nombre')
-    sec_name = models.CharField(blank=True, null=True,max_length=15,verbose_name='Segundo Nombre')
-    surname = models.CharField(max_length=15,verbose_name='Primer Apellido')
-    sec_surname = models.CharField(blank=True, null=True,max_length=15,verbose_name='Segundo Apellido')
-    password_ad = models.CharField(max_length=20,verbose_name='Contraseña')
-    email = models.EmailField(max_length=111,verbose_name='Correo')
     address = models.CharField(max_length=20,verbose_name='Dirección')
     cell_phone = models.CharField(max_length=25,verbose_name='Teléfono')
 
@@ -61,11 +57,11 @@ class Useer(models.Model):
         verbose_name = 'Usuario'
 
     def __str__(self):
-        return self.document_user+' '+self.first_name+' '+self.surname
+        return self.document_user
 
     
 class Admin(models.Model):
-    fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE,verbose_name="Usuario")
+    fk_id_user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="Usuario",default=6)
 
     def __str__(self):
         return (self.fk_id_user)
@@ -94,7 +90,7 @@ class Book(models.Model):
         verbose_name = 'Libro'
 
 class Cliient(models.Model):
-    fk_id_user = models.ForeignKey(Useer,on_delete=models.CASCADE,verbose_name="Usuario")
+    fk_id_user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="Usuario",default=6)
     observation = models.TextField(blank=True, null=True,verbose_name='Comentario')
 
     def __str__(self):

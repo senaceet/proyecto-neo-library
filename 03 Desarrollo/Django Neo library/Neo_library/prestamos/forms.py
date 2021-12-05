@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import DocumentType,Useer,Cliient,Editorial,Writer,tag,Book,Loan
 
@@ -10,7 +12,7 @@ class  DocumetoForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = Useer
-        fields = '__all__'
+        fields = ['document_user','fk_type_document','address','cell_phone']
 
 class Clientform(forms.ModelForm):
     class Meta:
@@ -41,3 +43,13 @@ class Loanform(forms.ModelForm):
     class Meta:
         model = Loan
         fields = '__all__'
+
+class UserRegisterForm(UserCreationForm):
+
+    email = forms.EmailField()
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+
+    class Meta:
+        model = User
+        fields = ['username','last_name','first_name','email','password1','password2']

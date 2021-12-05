@@ -17,6 +17,7 @@ urlpatterns = [
     path('prestamos',views.loans,name='prestamos'),
     path('users',views.users,name='usuarios'), # probando
     path('books',views.books,name='libros'),
+    path('register',views.register,name='register'),
     path('logout/',views.logout_view,name='logout'),
     path('infolibro/book/<int:Book_id>',views.booksinfo,name='infolibro'),
 ]

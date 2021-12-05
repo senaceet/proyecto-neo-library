@@ -65,6 +65,11 @@
           {% csrf_token %}
           <div class="row m-2">
             <div class="col">
+              {% render_field userform.username|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=Nombredeusuario"%}
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col">
               {% render_field usuarioform.document_user class="form-control" placeholder="Nuemero de documento" %}
             </div>
             <div class="col">
@@ -73,26 +78,23 @@
           </div>
           <div class="row m-2">
             <div class="col">
-              {% render_field usuarioform.first_name class="form-control" placeholder="Primer Nombre" %}
+              {% render_field userform.first_name|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=Nombre" %}
             </div>
             <div class="col">
-              {% render_field usuarioform.sec_name class="form-control" placeholder="Segundo Nombre" %}
-            </div>
-          </div>
-          <div class="row m-2">
-            <div class="col">
-              {% render_field usuarioform.surname class="form-control" placeholder="Primer apellido" %}
-            </div>
-            <div class="col">
-              {% render_field usuarioform.sec_surname class="form-control" placeholder="Segundo apellido" %}
+              {% render_field userform.last_name|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=apellido" %}
             </div>
           </div>
           <div class="row m-2">
             <div class="col">
-              {% render_field usuarioform.password_ad class="form-control" placeholder="contraseña" %}
+              {% render_field userform.password1|attr:"type=password"|attr:"class=form-control"|attr:"placeholder=contraseña" %}
             </div>
             <div class="col">
-              {% render_field usuarioform.email class="form-control" placeholder="correo" %}
+              {% render_field userform.password2|attr:"type=password"|attr:"class=form-control"|attr:"placeholder=confirmarcontraseña"%}
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col">
+              {% render_field userform.email|attr:"type=email"|attr:"class=form-control"|attr:"placeholder=correo" %}
             </div>
           </div>
           <div class="row m-2">
@@ -127,10 +129,10 @@
         <input type="hidden" name="clientid" value={{pk_client}}>
         <div class="row m-2">
           <div class="col">
-            {% render_field modify_form.document_user class="form-control" placeholder="Nuemero de documento" %}
+            {% render_field modify_form1.document_user class="form-control"%}
           </div>
           <div class="col">
-            {% render_field modify_form.fk_type_document class="form-select" placeholder="tipo de documento" %}
+            {% render_field modify_form1.fk_type_document class="form-select" placeholder="tipo de documento" %}
           </div>
         </div>
         <div class="row m-2">
@@ -138,31 +140,29 @@
             {% render_field modify_form.first_name class="form-control" placeholder="Primer Nombre" %}
           </div>
           <div class="col">
-            {% render_field modify_form.sec_name class="form-control" placeholder="Segundo Nombre" %}
+            {% render_field modify_form.last_name class="form-control" placeholder="Segundo Nombre" %}
           </div>
         </div>
         <div class="row m-2">
-          <div class="col">
-            {% render_field modify_form.surname class="form-control" placeholder="Primer apellido" %}
-          </div>
-          <div class="col">
-            {% render_field modify_form.sec_surname class="form-control" placeholder="Segundo apellido" %}
-          </div>
-        </div>
-        <div class="row m-2">
-          <div class="col">
-            {% render_field modify_form.password_ad class="form-control" placeholder="contraseña" %}
-          </div>
           <div class="col">
             {% render_field modify_form.email class="form-control" placeholder="correo" %}
+            
           </div>
         </div>
         <div class="row m-2">
           <div class="col">
-            {% render_field modify_form.address class="form-control" placeholder="Direccion" %}
+            {% render_field modify_form1.address class="form-control" placeholder="Direccion" %}
           </div>
           <div class="col">
-            {% render_field modify_form.cell_phone class="form-control" placeholder="telfono" %}
+            {% render_field modify_form1.cell_phone class="form-control" placeholder="telfono" %}
+          </div>
+        </div>
+        <div class="row m-2">
+          <div class="col">
+            {% render_field modify_form.username|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=Nombredeusuario" %}
+          </div>
+          <div class="col">
+            {% render_field modify_form.date_joined|attr:"type=date"|attr:"class=form-control" %}
           </div>
         </div>
       </div>
@@ -232,6 +232,7 @@
     <thead>
       <tr>
         <th scope="col">ID</th>
+        <th scope="col">USERNAME</th>
         <th scope="col">N° DOCUMENTO</th>
         <th scope="col">NOMBRES</th>
         <th scope="col">APELLIDOS</th>
@@ -245,12 +246,13 @@
       {% for client in clients.all %}
       <tr>
         <th scope="row">{{client.id}}</th>
-        <td>{{client.fk_id_user.document_user}}</td>
-        <td>{{client.fk_id_user.first_name}} {{client.fk_id_user.sec_name|default_if_none:""}}</td>
-        <td>{{client.fk_id_user.surname}} {{client.fk_id_user.sec_surname|default_if_none:""}}</td>
+        <td>{{client.fk_id_user.username}}</td>
+        <td>{{client.fk_id_user.useer.document_user}}</td>
+        <td>{{client.fk_id_user.first_name}}</td>
+        <td>{{client.fk_id_user.last_name}}</td>
         <td>{{client.fk_id_user.email}}</td>
-        <td>{{client.fk_id_user.address}}</td>
-        <td>{{client.fk_id_user.cell_phone}}</td>
+        <td>{{client.fk_id_user.useer.address}}</td>
+        <td>{{client.fk_id_user.useer.cell_phone}}</td>
         <td>
           <form acion="{% url 'usuarios' %}#mmodifyusuario" method="get">
             <input name="clientid" id="clientid" type="hidden" value={{client.id}}>

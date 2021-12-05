@@ -12,9 +12,9 @@ class DocumentType_admin(admin.ModelAdmin):
 #admin.site.register(Useer)
 @admin.register(Useer)
 class  useer_admin(admin.ModelAdmin):
-    list_display = ('first_name','surname','email')
-    list_display_links = ('first_name','surname','email')
-    search_fields = ('first_name','surname','email')
+    list_display = ('fk_type_document',)
+    list_display_links = ('fk_type_document',)
+    search_fields = ('fk_type_document',)
     list_filter = ('fk_type_document',)
     list_per_page = (10)
 #admin.site.register(Book)

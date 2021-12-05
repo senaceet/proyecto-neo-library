@@ -31,15 +31,25 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'log_user' %}"><i class="fas fa-user-astronaut"></i></a>
           </li>
+          {% if user.is_authenticated %}
+          {% if client  %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'mis_prestamos' client %}" tabindex="-1" aria-disabled="false">Mis prestamos</a>
+          </li>
+          {% endif %}
+          {% else %}
           <li class="nav-item">
             <a class="nav-link disabled" href="" tabindex="-1" aria-disabled="true">Mis prestamos</a>
           </li>
+          {% endif %}
         </ul>
         <form class="d-flex mx-lg-1 ">
           <input class="form-control me-2 sch" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btno" type="submit"><i class="fas fa-ankh"></i></button>
         </form>
-      </div>
+        {% if user.is_authenticated %}
+        <a class="nav-link active" aria-current="page" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt neon"></i></a>
+        {% endif %}
     </div>
   </nav>
   <!--carusel-->
@@ -98,6 +108,11 @@
     </a>
   </div>
 </div>
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">{{message}}</div>
+  {% endfor %}
+{% endif %}
 <!--book cards-->
 <div class="container mt-2 ">
 <div class="row">
@@ -111,108 +126,6 @@
     </div>
   </div>
   {% endfor %}
-</div>
-<div class="row">
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_say_her_name.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Say her name</h5>
-      <p class="card-text">Say Her Name follows Bobbie Rowe, who attends, Piper's Hall School, an all girls boarding school in England.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_2_veinte_mil_leguas_de_vuaje_submarino.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Veinte mil leguas de viaje submarino</h5>
-      <p class="card-text">Veinte mil leguas de viaje submarino es una de las obras literarias más conocidas del escritor francés Julio Verne.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_the_story_of_art.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">The story of art</h5>
-      <p class="card-text">La historia del arte, de E. H. Gombrich, es una obra de iniciación a la historia del arte, que abarca desde la prehistoria a la época contemporánea, el siglo XX.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_La_historia_del_tiempo.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">La historia del tiempo</h5>
-      <p class="card-text">Breve historia del tiempo: del Big Bang a los agujeros negros es un libro de divulgación científica publicado en 1988 por el escritor británico Stephen Hawking y prologado por Carl Sagan.​</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada-archipielago_gulag.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Archipielago gulag</h5>
-      <p class="card-text">Archipiélago Gulag es una obra del escritor ruso Aleksandr Solzhenitsyn que denuncia el sistema de represión política en la extinta Unión de Repúblicas Socialistas Soviéticas.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_2_viaje_centro_de_la-tierra.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Viaje al centro de la tierra</h5>
-      <p class="card-text">"VIAJE AL CENTRO DE LA TIERRA" es un Mundo perdido, puede clasificarse como novela científica y de ciencia ficción.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_1_viaje_centro_de_la-tierra.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Viaje al centro de la tierra</h5>
-      <p class="card-text">"VIAJE AL CENTRO DE LA TIERRA" es un Mundo perdido, puede clasificarse como novela científica y de ciencia ficción.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_Las_formulas_de_peter.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Las formulas de peter</h5>
-      <p class="card-text">El principio de Peter se puede considerar un concepto organizacional que se convirtió en referencia obligada en el mundo de las empresas</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_El_gran_diseño.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">El gran diseño</h5>
-      <p class="card-text">El gran diseño es un libro de divulgación científica escrito por los físicos Stephen Hawking y Leonard Mlodinow</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_calculo_trascendentes_tempranas.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Calculo:trasendentes tempranas</h5>
-      <p class="card-text">Trascendentes tempranas es ampliamente reconocido por su precisión matemática y la exactitud, claridad de la exposición y notables ejemplos y conjuntos de problemas.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_anatomia_artistica_2.jpg'%}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Anatomia artistica 2</h5>
-      <p class="card-text">COMO DIBUJAR EL CUERPO HUMANO DE FORMA ESQUEMATICA. Tras el éxito del primer volumen de Anatomía artística dedicado alécorché y otras técnicas de dibujo</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
-  <div class="card m-4 mb-2 mx-3" style="width: 18rem;">
-    <img src="{% static 'images/books/portada_el_origen_de_las_especies.jpg' %}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">El origen de las especies</h5>
-      <p class="card-text">Charles Darwin (1809-1882), al publicar su obra El origen de las especies, presentó su teoría de la evolución natural que, pasados ciento cincuenta años, continúa siendo la base de la interpretación de la naturaleza de la biología moderna.</p>
-      <a href="./error.html" class="btn cadbtn "><i class="fab fa-canadian-maple-leaf"></i>Info</a>
-    </div>
-  </div>
 </div>
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group me-2" role="group" aria-label="First group">

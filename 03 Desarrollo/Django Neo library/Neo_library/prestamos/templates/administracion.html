@@ -44,7 +44,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> configuracion</a></li>
               <li><a class="dropdown-item" href="./loginad.html"><i class="fas fa-user-friends"></i> cambiar Usuario</a></li>
-              <li><a class="dropdown-item" href="{% url 'index' %}"><i class="fas fa-user-times"></i> cerrar sesion</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-user-times"></i> cerrar sesion</a></li>
             </ul>
           </div>
   </nav>
@@ -120,6 +120,11 @@
           {% csrf_token %}
           <div class="row m-2">
             <div class="col">
+              {% render_field usuario1form.username|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=Nombredeusuario"%}
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col">
               {% render_field usuarioform.document_user class="form-control" placeholder="Nuemero de documento" %}
             </div>
             <div class="col">
@@ -128,26 +133,23 @@
           </div>
           <div class="row m-2">
             <div class="col">
-              {% render_field usuarioform.first_name class="form-control" placeholder="Primer Nombre" %}
+              {% render_field usuario1form.first_name class="form-control" placeholder="nombres" %}
             </div>
             <div class="col">
-              {% render_field usuarioform.sec_name class="form-control" placeholder="Segundo Nombre" %}
-            </div>
-          </div>
-          <div class="row m-2">
-            <div class="col">
-              {% render_field usuarioform.surname class="form-control" placeholder="Primer apellido" %}
-            </div>
-            <div class="col">
-              {% render_field usuarioform.sec_surname class="form-control" placeholder="Segundo apellido" %}
+              {% render_field usuario1form.last_name class="form-control" placeholder="apellidos" %}
             </div>
           </div>
           <div class="row m-2">
             <div class="col">
-              {% render_field usuarioform.password_ad class="form-control" placeholder="contraseña" %}
+              {% render_field usuario1form.password1|attr:"type=password"|attr:"class=form-control"|attr:"placeholder=contraseña" %}
             </div>
             <div class="col">
-              {% render_field usuarioform.email class="form-control" placeholder="correo" %}
+              {% render_field usuario1form.password2|attr:"type=password"|attr:"class=form-control"|attr:"placeholder=confirmarcontraseña"%}
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col">
+              {% render_field usuario1form.email|attr:"type=email"|attr:"class=form-control"|attr:"placeholder=correo" %}
             </div>
           </div>
           <div class="row m-2">
