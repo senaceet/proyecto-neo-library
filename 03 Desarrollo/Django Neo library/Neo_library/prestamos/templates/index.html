@@ -23,10 +23,10 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'log_admin' %}"><i class="fas fa-feather-alt neon"></i></a>
+            <a class="nav-link active" aria-current="page" href="{% url 'administration' %}"><i class="fas fa-feather-alt neon"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./error.html"><i class="fas fa-random"></i></a>
+            <a class="nav-link" href=""><i class="fas fa-random"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'log_user' %}"><i class="fas fa-user-astronaut"></i></a>
@@ -45,7 +45,7 @@
         </ul>
         <form class="d-flex mx-lg-1 ">
           <input class="form-control me-2 sch" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btno" type="submit"><i class="fas fa-ankh"></i></button>
+          <button class="btn btno" type="submit"><i class="fas fa-search"></i></button>
         </form>
         {% if user.is_authenticated %}
         <a class="nav-link active" aria-current="page" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt neon"></i></a>

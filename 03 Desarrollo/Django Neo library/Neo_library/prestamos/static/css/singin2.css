@@ -1,27 +1,30 @@
 .hallo{
-    background-color: rgba(255, 255, 255, 0.733);
+    background-color: rgba(190, 108, 238, 0.589);
     border-radius: 25px;
     width: 25rem;
 }
 .avatar{
- max-height: 250px;
+ max-height: 270px;
 }
 .fcc{
  width: 17rem;
 }
 .clbto{
-    background-color: rgb(85, 85, 85);
-    border-color: rgb(85, 85, 85);
+    background-color: rgb(29, 125, 204);
+    border-color: rgb(29, 125, 204);
 }
 .clbto:hover{
-    background-color: rgb(73, 73, 73);
-    border-color:rgb(73, 73, 73) ;
+    background-color: rgb(84, 166, 233);
+    border-color:rgb(84, 166, 233) ;
 }
 .gbtn{
-    background-color: rgb(126, 85, 25);
-    border-color: rgb(126, 85, 25);
+    background-color: rgb(129, 24, 161);
+    border-color: rgb(129, 24, 161);
 }
 .gbtn:hover{
-   background-color:rgb(175, 119, 34);
-   border-color: rgb(175, 119, 34);
+   background-color:rgb(185, 48, 226);
+   border-color: rgb(185, 48, 226);
+}
+.backimg{
+    background-image: url(https://wallpaperaccess.com/full/3358157.jpg);
 }

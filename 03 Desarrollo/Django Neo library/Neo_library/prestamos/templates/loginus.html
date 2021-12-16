@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" />
     <title>Inicio de seccion usuario</title>
 </head>
-<body background="{% static 'images/bgs/bg_login_user_old_library.jpg' %}">
-<div class="row">
+<body class="backimg" >
+<div class="container-fluid"> 
+  <div class="row">
   <div class="col"></div>
   <div class="col">
-    <div class="container-fluid">
-      <div class="my-4 mx-3 hallo">
+      <div class="my-4 hallo">
         {% if messages %}
         {% for message in messages %}
           {% if message.tags == 'succes' %}
@@ -33,8 +33,8 @@
           {% endif %}
         {% endfor %}
       {% endif %}
-          <div class="mb-3 row"><img class="avatar" src='https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairTheCaesar&accessoriesType=Blank&hairColor=Red&facialHairType=Blank&clotheType=GraphicShirt&clotheColor=PastelGreen&graphicType=Diamond&eyeType=Happy&eyebrowType=Default&mouthType=Smile&skinColor=Light'/></div>
-          <div class="mb-3 row">
+          <div class="mb-3 row"><img class="avatar" src="{% static 'images/others/avatarnewwave.png' %}"/></div>
+          <div class="mb-3 mx-2 row">
             <form method="POST">
               {%csrf_token%}
               <div class="form-group">
@@ -45,18 +45,18 @@
                 <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña</label>
                 <input type="password" class="form-control fcc mx-3" id="inputPassword" name="password">
               </div>
-            <div class="my-3 row mx-5">
+            <div class="my-3 row mx-3">
                 <div class="col-2"></div>
-                <div class="col-3"><button type="submit" class="btn btn-danger mb-3 clbto">Clear</button></div>
+                <div class="col-3"><button type="" class="btn btn-danger mb-3 clbto">Clear</button></div>
                 <div class="col-4"><button type="submit" class="btn btn-danger mb-3 gbtn "><i class="fas fa-book-open"></i> go</button></div>
             </div>
           </div>
           </form>
       </div>
       </div>
-      </div>
       <div class="col"></div>
   </div>
+</div>
  <!-- Bootstrap Bundle with Popper javascrip-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>

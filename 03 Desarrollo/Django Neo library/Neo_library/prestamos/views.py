@@ -22,22 +22,6 @@ def index (request):
             client_id = client.id
             return render(request,'index.html',{'books':books,'client':client_id})
     return render(request,'index.html',{'books':books,})
-#log in as admin
-@unauthenticated_user
-def log_admin (request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(username=username, password=password)
-        if user:
-            login(request,user)
-            messages.success(request,'Bienvenido')
-            return redirect('administration')
-        else:
-            messages.error(request,'usuario o contraseña incorrecta')
-
-    return render(request,'loginad.html')
 #log in as user
 @unauthenticated_user
 def log_user (request):
@@ -60,7 +44,7 @@ def logout_view (request):
     messages.success(request,'sesion finalizada')
     return redirect('index')
 #administracion page
-@login_required(login_url='log_admin') ##decorator automatico django
+@login_required(login_url='log_user') ##decorator automatico django
 @allowed_users(allowed_roles=['librarian'])
 def administration (request):
     n_loan = Loanform()
@@ -106,7 +90,7 @@ def administration (request):
             return render (request,'administracion.html',{'newloan':n_loan,'note':note,'libroform':book,'usuarioform':n_user,'n_u':number_users,'n_b':number_books,'n_l':number_loans,'last_l':last_loans,'usuario1form':nn_user})
     return render (request,'administracion.html',{'newloan':n_loan,'libroform':book,'usuarioform':n_user,'n_u':number_users,'n_b':number_books,'n_l':number_loans,'last_l':last_loans,'usuario1form':nn_user})
 #books page
-@login_required(login_url='log_admin') ##decorator automatico django
+@login_required(login_url='log_user') ##decorator automatico django
 @allowed_users(allowed_roles=['librarian'])
 def books (request):
     libros = Book.objects.all()
@@ -192,7 +176,7 @@ def my_loans (request,Cliient_id): #teasting
         raise Http404('client not found')
     return render (request,'mis_prestamos.html',{'client':client,'c_loans':c_loans,})
 # loans page
-@login_required(login_url='log_admin') ##decorator automatico django
+@login_required(login_url='log_user') ##decorator automatico django
 @allowed_users(allowed_roles=['librarian'])
 def loans (request):
     prestamos=Loan.objects.all
@@ -236,7 +220,7 @@ def loans (request):
         return  render (request,'prestamos.html',{'newloan':n_loan,'loans':prestamos})
     return  render (request,'prestamos.html',{'newloan':n_loan,'loans':prestamos})
 #users page
-@login_required(login_url='log_admin') ##decorator automatico django
+@login_required(login_url='log_user') ##decorator automatico django
 @allowed_users(allowed_roles=['librarian'])
 def users (request):
     clients = Cliient.objects

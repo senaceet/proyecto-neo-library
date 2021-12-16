@@ -18,14 +18,14 @@
      <!--navbar-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><h4 class="h3 neon">書店</h4></a>
+      <a class="navbar-brand" href="{% url 'index' %}"><h4 class="h3 neon">Neo Library</h4></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'administration' %}"><h5 class="h5">Inicio</h5></a>
+            <a class="nav-link active" aria-current="page" href="{% url 'administration' %}"><h5 class="h5">Administracion</h5></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'libros' %}"><h5 class="h5">Libros</h5></a>
@@ -65,12 +65,12 @@
           {% csrf_token %}
           <div class="row m-2">
             <div class="col">
-              {% render_field userform.username|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=Nombredeusuario"%}
+              {% render_field userform.username|attr:"type=text"|attr:"class=form-control" placeholder="Nombre de usuario"%}
             </div>
           </div>
           <div class="row m-2">
             <div class="col">
-              {% render_field usuarioform.document_user class="form-control" placeholder="Nuemero de documento" %}
+              {% render_field usuarioform.document_user class="form-control" placeholder="Numero de documento" %}
             </div>
             <div class="col">
               {% render_field usuarioform.fk_type_document class="form-select" placeholder="tipo de documento" %}
@@ -78,10 +78,10 @@
           </div>
           <div class="row m-2">
             <div class="col">
-              {% render_field userform.first_name|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=Nombre" %}
+              {% render_field userform.first_name|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=Nombre(s)" %}
             </div>
             <div class="col">
-              {% render_field userform.last_name|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=apellido" %}
+              {% render_field userform.last_name|attr:"type=text"|attr:"class=form-control"|attr:"placeholder=apellido(s)" %}
             </div>
           </div>
           <div class="row m-2">
@@ -89,7 +89,7 @@
               {% render_field userform.password1|attr:"type=password"|attr:"class=form-control"|attr:"placeholder=contraseña" %}
             </div>
             <div class="col">
-              {% render_field userform.password2|attr:"type=password"|attr:"class=form-control"|attr:"placeholder=confirmarcontraseña"%}
+              {% render_field userform.password2|attr:"type=password"|attr:"class=form-control" placeholder="confirmar contraseña"%}
             </div>
           </div>
           <div class="row m-2">
